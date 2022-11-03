@@ -1,5 +1,6 @@
 import Foundation
 
+// Response of: https://pokeapi.co/api/v2/pokemon-species/1/
 /// Species object returned as part of the `getSpeciesDetails` endpoint
 struct SpeciesDetails : Decodable {
     let name: String

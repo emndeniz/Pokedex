@@ -1,5 +1,6 @@
 import Foundation
 
+// Response of: https://pokeapi.co/api/v2/evolution-chain/1
 /// EvolutionChain model returned from the `getEvolutionChain` endpoint
 struct EvolutionChainDetails : Decodable{
     let chain: ChainLink

@@ -10,9 +10,19 @@
 		0122FA692914328500118577 /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0122FA682914328500118577 /* RequestHandler.swift */; };
 		0122FA6C2914350300118577 /* SwiftyBeaver in Frameworks */ = {isa = PBXBuildFile; productRef = 0122FA6B2914350300118577 /* SwiftyBeaver */; };
 		0122FA6F2914351D00118577 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0122FA6E2914351D00118577 /* Logger.swift */; };
+		0122FA782914561D00118577 /* BaseWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0122FA722914561D00118577 /* BaseWireframe.swift */; };
+		0122FA7A2914561D00118577 /* UIStoryboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0122FA742914561D00118577 /* UIStoryboardExtension.swift */; };
+		0122FA7B2914561D00118577 /* PresenterInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0122FA752914561D00118577 /* PresenterInterface.swift */; };
+		0122FA7C2914561D00118577 /* ViewInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0122FA762914561D00118577 /* ViewInterface.swift */; };
+		0122FA7D2914561D00118577 /* InteractorInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0122FA772914561D00118577 /* InteractorInterface.swift */; };
+		0122FA832914569700118577 /* ListInterfaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0122FA7E2914569700118577 /* ListInterfaces.swift */; };
+		0122FA842914569700118577 /* ListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0122FA7F2914569700118577 /* ListPresenter.swift */; };
+		0122FA852914569700118577 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0122FA802914569700118577 /* ListViewController.swift */; };
+		0122FA862914569700118577 /* ListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0122FA812914569700118577 /* ListInteractor.swift */; };
+		0122FA872914569700118577 /* ListWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0122FA822914569700118577 /* ListWireframe.swift */; };
+		0122FA89291456D500118577 /* ListNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0122FA88291456D500118577 /* ListNavigationViewController.swift */; };
 		CE4C9CAB2820167200FEA589 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4C9CAA2820167200FEA589 /* AppDelegate.swift */; };
 		CE4C9CAD2820167200FEA589 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4C9CAC2820167200FEA589 /* SceneDelegate.swift */; };
-		CE4C9CAF2820167200FEA589 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4C9CAE2820167200FEA589 /* ListViewController.swift */; };
 		CE4C9CB42820167300FEA589 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE4C9CB32820167300FEA589 /* Assets.xcassets */; };
 		CE4C9CB72820167300FEA589 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE4C9CB52820167300FEA589 /* LaunchScreen.storyboard */; };
 		CE9303C32822706E0057188E /* Species.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9303C22822706E0057188E /* Species.swift */; };
@@ -27,10 +37,20 @@
 /* Begin PBXFileReference section */
 		0122FA682914328500118577 /* RequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
 		0122FA6E2914351D00118577 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		0122FA722914561D00118577 /* BaseWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseWireframe.swift; sourceTree = "<group>"; };
+		0122FA742914561D00118577 /* UIStoryboardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStoryboardExtension.swift; sourceTree = "<group>"; };
+		0122FA752914561D00118577 /* PresenterInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterInterface.swift; sourceTree = "<group>"; };
+		0122FA762914561D00118577 /* ViewInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewInterface.swift; sourceTree = "<group>"; };
+		0122FA772914561D00118577 /* InteractorInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractorInterface.swift; sourceTree = "<group>"; };
+		0122FA7E2914569700118577 /* ListInterfaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListInterfaces.swift; sourceTree = "<group>"; };
+		0122FA7F2914569700118577 /* ListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPresenter.swift; sourceTree = "<group>"; };
+		0122FA802914569700118577 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		0122FA812914569700118577 /* ListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListInteractor.swift; sourceTree = "<group>"; };
+		0122FA822914569700118577 /* ListWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListWireframe.swift; sourceTree = "<group>"; };
+		0122FA88291456D500118577 /* ListNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNavigationViewController.swift; sourceTree = "<group>"; };
 		CE4C9CA72820167200FEA589 /* CataPoke.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CataPoke.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE4C9CAA2820167200FEA589 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE4C9CAC2820167200FEA589 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CE4C9CAE2820167200FEA589 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		CE4C9CB32820167300FEA589 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE4C9CB62820167300FEA589 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE4C9CB82820167300FEA589 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -64,6 +84,27 @@
 			path = Utilties;
 			sourceTree = "<group>";
 		};
+		0122FA702914555900118577 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				CE9303CF282279F60057188E /* List */,
+				CE9303D22822A9230057188E /* Details */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		0122FA712914561100118577 /* BaseViper */ = {
+			isa = PBXGroup;
+			children = (
+				0122FA722914561D00118577 /* BaseWireframe.swift */,
+				0122FA742914561D00118577 /* UIStoryboardExtension.swift */,
+				0122FA752914561D00118577 /* PresenterInterface.swift */,
+				0122FA762914561D00118577 /* ViewInterface.swift */,
+				0122FA772914561D00118577 /* InteractorInterface.swift */,
+			);
+			path = BaseViper;
+			sourceTree = "<group>";
+		};
 		CE4C9C9E2820167200FEA589 = {
 			isa = PBXGroup;
 			children = (
@@ -84,9 +125,9 @@
 		CE4C9CA92820167200FEA589 /* CataPoke */ = {
 			isa = PBXGroup;
 			children = (
+				0122FA712914561100118577 /* BaseViper */,
+				0122FA702914555900118577 /* Scenes */,
 				0122FA6D2914350F00118577 /* Utilties */,
-				CE9303D22822A9230057188E /* Details */,
-				CE9303CF282279F60057188E /* List */,
 				CE9303C128226EDC0057188E /* Models */,
 				CE9303C8282271730057188E /* Network */,
 				CE4C9CAA2820167200FEA589 /* AppDelegate.swift */,
@@ -121,8 +162,13 @@
 		CE9303CF282279F60057188E /* List */ = {
 			isa = PBXGroup;
 			children = (
-				CE4C9CAE2820167200FEA589 /* ListViewController.swift */,
 				CE9303D028227CDE0057188E /* ListCell.swift */,
+				0122FA7E2914569700118577 /* ListInterfaces.swift */,
+				0122FA7F2914569700118577 /* ListPresenter.swift */,
+				0122FA802914569700118577 /* ListViewController.swift */,
+				0122FA812914569700118577 /* ListInteractor.swift */,
+				0122FA822914569700118577 /* ListWireframe.swift */,
+				0122FA88291456D500118577 /* ListNavigationViewController.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -213,15 +259,25 @@
 			files = (
 				CE9303C32822706E0057188E /* Species.swift in Sources */,
 				0122FA692914328500118577 /* RequestHandler.swift in Sources */,
-				CE4C9CAF2820167200FEA589 /* ListViewController.swift in Sources */,
+				0122FA862914569700118577 /* ListInteractor.swift in Sources */,
+				0122FA832914569700118577 /* ListInterfaces.swift in Sources */,
+				0122FA782914561D00118577 /* BaseWireframe.swift in Sources */,
 				CE4C9CAB2820167200FEA589 /* AppDelegate.swift in Sources */,
 				CE9303C5282270F60057188E /* EvolutionChain.swift in Sources */,
+				0122FA89291456D500118577 /* ListNavigationViewController.swift in Sources */,
+				0122FA872914569700118577 /* ListWireframe.swift in Sources */,
+				0122FA7D2914561D00118577 /* InteractorInterface.swift in Sources */,
 				CE9303CA282271990057188E /* APIRoute.swift in Sources */,
+				0122FA842914569700118577 /* ListPresenter.swift in Sources */,
+				0122FA7A2914561D00118577 /* UIStoryboardExtension.swift in Sources */,
 				CE9303D128227CDE0057188E /* ListCell.swift in Sources */,
 				CE9303CC2822741F0057188E /* RequestHandling.swift in Sources */,
 				0122FA6F2914351D00118577 /* Logger.swift in Sources */,
+				0122FA7C2914561D00118577 /* ViewInterface.swift in Sources */,
 				CE4C9CAD2820167200FEA589 /* SceneDelegate.swift in Sources */,
+				0122FA7B2914561D00118577 /* PresenterInterface.swift in Sources */,
 				CE9303D92822D1D30057188E /* SpeciesDetails.swift in Sources */,
+				0122FA852914569700118577 /* ListViewController.swift in Sources */,
 				CE9303D42822A92F0057188E /* DetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

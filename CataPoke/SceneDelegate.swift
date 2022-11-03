@@ -8,12 +8,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         // Start the logger
         Logger.startLogger()
+
+        self.window = UIWindow(windowScene: windowScene)
+        createInitialWireframe()
+    }
+    
+    /// Creates Initial Wireframe to start VIPER Flow
+    private func createInitialWireframe() {
         
-        let window = UIWindow(windowScene: windowScene)
-        let navigationController = UINavigationController(rootViewController: ListViewController())
-        navigationController.navigationBar.prefersLargeTitles = true
-        window.rootViewController = navigationController
-        self.window = window
-        window.makeKeyAndVisible()
+        
+        
+        let initialViewController = UINavigationController()
+        initialViewController.navigationBar.prefersLargeTitles = true
+
+        initialViewController.setRootWireframe(ListWireframe())
+        window?.rootViewController = initialViewController
+        window?.makeKeyAndVisible()
+ 
+        
+       
     }
 }
