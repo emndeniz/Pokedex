@@ -12,7 +12,7 @@ import UIKit
 /// Not required, but feel free to improve/reorganize the ViewController however you like.
 class ListViewController: UIViewController {
     /// TODO, replace with your own `RequestHandler`
-    private let requestHandler: RequestHandling = FakeRequestHandler()
+    private let requestHandler: RequestHandling = RequestHandler()
 
     private var species: [Species] = []
 
@@ -47,18 +47,17 @@ class ListViewController: UIViewController {
     }
 
     private func fetchSpecies() {
-        do {
-            // TODO Consider pagination
-            try requestHandler.request(route: .getSpeciesList(limit: 20, offset: 0)) { [weak self] (result: Result<SpeciesResponse, Error>) -> Void in
-                switch result {
-                case .success(let response):
-                    self?.didFetchSpecies(response: response)
-                case .failure:
-                    print("TODO handle network failures")
-                }
+        
+        
+        
+        requestHandler.request(route: .getSpeciesList(limit: 20, offset: 0)) { (result: Result<SpeciesResponse, APIError>) in
+            switch result {
+                
+            case .success(let response):
+                print("response:\(response)")
+            case .failure(let err):
+                print("fail \(err)")
             }
-        } catch {
-            print("TODO handle request handling failures failures")
         }
     }
 

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0122FA692914328500118577 /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0122FA682914328500118577 /* RequestHandler.swift */; };
+		0122FA6C2914350300118577 /* SwiftyBeaver in Frameworks */ = {isa = PBXBuildFile; productRef = 0122FA6B2914350300118577 /* SwiftyBeaver */; };
+		0122FA6F2914351D00118577 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0122FA6E2914351D00118577 /* Logger.swift */; };
 		CE4C9CAB2820167200FEA589 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4C9CAA2820167200FEA589 /* AppDelegate.swift */; };
 		CE4C9CAD2820167200FEA589 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4C9CAC2820167200FEA589 /* SceneDelegate.swift */; };
 		CE4C9CAF2820167200FEA589 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4C9CAE2820167200FEA589 /* ListViewController.swift */; };
@@ -16,13 +19,14 @@
 		CE9303C5282270F60057188E /* EvolutionChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9303C4282270F60057188E /* EvolutionChain.swift */; };
 		CE9303CA282271990057188E /* APIRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9303C9282271990057188E /* APIRoute.swift */; };
 		CE9303CC2822741F0057188E /* RequestHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9303CB2822741F0057188E /* RequestHandling.swift */; };
-		CE9303CE282274C30057188E /* FakeRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9303CD282274C30057188E /* FakeRequestHandler.swift */; };
 		CE9303D128227CDE0057188E /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9303D028227CDE0057188E /* ListCell.swift */; };
 		CE9303D42822A92F0057188E /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9303D32822A92F0057188E /* DetailsViewController.swift */; };
 		CE9303D92822D1D30057188E /* SpeciesDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9303D82822D1D30057188E /* SpeciesDetails.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0122FA682914328500118577 /* RequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
+		0122FA6E2914351D00118577 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		CE4C9CA72820167200FEA589 /* CataPoke.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CataPoke.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE4C9CAA2820167200FEA589 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE4C9CAC2820167200FEA589 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -34,7 +38,6 @@
 		CE9303C4282270F60057188E /* EvolutionChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvolutionChain.swift; sourceTree = "<group>"; };
 		CE9303C9282271990057188E /* APIRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRoute.swift; sourceTree = "<group>"; };
 		CE9303CB2822741F0057188E /* RequestHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHandling.swift; sourceTree = "<group>"; };
-		CE9303CD282274C30057188E /* FakeRequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeRequestHandler.swift; sourceTree = "<group>"; };
 		CE9303D028227CDE0057188E /* ListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
 		CE9303D32822A92F0057188E /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		CE9303D52822D0200057188E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -46,12 +49,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0122FA6C2914350300118577 /* SwiftyBeaver in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0122FA6D2914350F00118577 /* Utilties */ = {
+			isa = PBXGroup;
+			children = (
+				0122FA6E2914351D00118577 /* Logger.swift */,
+			);
+			path = Utilties;
+			sourceTree = "<group>";
+		};
 		CE4C9C9E2820167200FEA589 = {
 			isa = PBXGroup;
 			children = (
@@ -72,6 +84,7 @@
 		CE4C9CA92820167200FEA589 /* CataPoke */ = {
 			isa = PBXGroup;
 			children = (
+				0122FA6D2914350F00118577 /* Utilties */,
 				CE9303D22822A9230057188E /* Details */,
 				CE9303CF282279F60057188E /* List */,
 				CE9303C128226EDC0057188E /* Models */,
@@ -99,8 +112,8 @@
 			isa = PBXGroup;
 			children = (
 				CE9303C9282271990057188E /* APIRoute.swift */,
-				CE9303CD282274C30057188E /* FakeRequestHandler.swift */,
 				CE9303CB2822741F0057188E /* RequestHandling.swift */,
+				0122FA682914328500118577 /* RequestHandler.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -138,6 +151,9 @@
 			dependencies = (
 			);
 			name = CataPoke;
+			packageProductDependencies = (
+				0122FA6B2914350300118577 /* SwiftyBeaver */,
+			);
 			productName = CataPoke;
 			productReference = CE4C9CA72820167200FEA589 /* CataPoke.app */;
 			productType = "com.apple.product-type.application";
@@ -166,6 +182,9 @@
 				Base,
 			);
 			mainGroup = CE4C9C9E2820167200FEA589;
+			packageReferences = (
+				0122FA6A2914350300118577 /* XCRemoteSwiftPackageReference "SwiftyBeaver" */,
+			);
 			productRefGroup = CE4C9CA82820167200FEA589 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -193,13 +212,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE9303C32822706E0057188E /* Species.swift in Sources */,
-				CE9303CE282274C30057188E /* FakeRequestHandler.swift in Sources */,
+				0122FA692914328500118577 /* RequestHandler.swift in Sources */,
 				CE4C9CAF2820167200FEA589 /* ListViewController.swift in Sources */,
 				CE4C9CAB2820167200FEA589 /* AppDelegate.swift in Sources */,
 				CE9303C5282270F60057188E /* EvolutionChain.swift in Sources */,
 				CE9303CA282271990057188E /* APIRoute.swift in Sources */,
 				CE9303D128227CDE0057188E /* ListCell.swift in Sources */,
 				CE9303CC2822741F0057188E /* RequestHandling.swift in Sources */,
+				0122FA6F2914351D00118577 /* Logger.swift in Sources */,
 				CE4C9CAD2820167200FEA589 /* SceneDelegate.swift in Sources */,
 				CE9303D92822D1D30057188E /* SpeciesDetails.swift in Sources */,
 				CE9303D42822A92F0057188E /* DetailsViewController.swift in Sources */,
@@ -408,6 +428,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0122FA6A2914350300118577 /* XCRemoteSwiftPackageReference "SwiftyBeaver" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyBeaver/SwiftyBeaver.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0122FA6B2914350300118577 /* SwiftyBeaver */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0122FA6A2914350300118577 /* XCRemoteSwiftPackageReference "SwiftyBeaver" */;
+			productName = SwiftyBeaver;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CE4C9C9F2820167200FEA589 /* Project object */;
 }
