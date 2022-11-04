@@ -9,15 +9,16 @@
 //
 
 import UIKit
+import NVActivityIndicatorView
 
 final class ListViewController: UIViewController {
-
+    
     // MARK: - Public properties -
-
+    
     var presenter: ListPresenterInterface!
     
     // MARK: - Private properties -
-
+    
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -26,40 +27,56 @@ final class ListViewController: UIViewController {
         tableView.separatorStyle = .none
         return tableView
     }()
-
+    
+    private let indicator:NVActivityIndicatorView = {
+        let frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+        let indicator = NVActivityIndicatorView(frame: frame, type: .ballRotateChase)
+        indicator.color = .primaryColor
+        indicator.startAnimating()
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        return indicator
+    }()
+    
     // MARK: - Lifecycle -
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .defaultBackgroundColor
         title = "POKéMON"
-
+        
         setupViews()
         presenter.getNewPokemons()
-
+        
     }
     
     private func setupViews() {
         view.addSubview(tableView)
+        view.addSubview(indicator)
+        
 
-               NSLayoutConstraint.activate([
-                   tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-                   tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-                   tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-                   tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
-               ])
-
+        
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            
+            indicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            indicator.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+        
         tableView.dataSource = self
         tableView.delegate = self
     }
-
+    
 }
 
 // MARK: - Extensions -
 
 extension ListViewController: ListViewInterface {
     func refreshList() {
+        indicator.stopAnimating()
         tableView.reloadData()
     }
     
@@ -69,7 +86,7 @@ extension ListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter.numberOfCells
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ListCell.reuseIdentifier, for: indexPath) as! ListCell
         
@@ -86,7 +103,7 @@ extension ListViewController: UITableViewDataSource {
 extension ListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-
+        
         //let viewController = DetailsViewController(species: species[indexPath.row])
         //navigationController?.pushViewController(viewController, animated: true)
     }
