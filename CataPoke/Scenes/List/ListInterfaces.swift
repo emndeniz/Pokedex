@@ -14,10 +14,15 @@ protocol ListWireframeInterface: WireframeInterface {
 }
 
 protocol ListViewInterface: ViewInterface {
+    func refreshList()
 }
 
 protocol ListPresenterInterface: PresenterInterface {
+    func getNewPokemons()
+    var numberOfCells: Int {get}
+    func cellForRowIndex(index:Int) -> Species
 }
 
 protocol ListInteractorInterface: InteractorInterface {
+    func getPokemons(pageNum:Int, _ completion:@escaping ((Result<SpeciesResponse, APIError>) -> Void))
 }

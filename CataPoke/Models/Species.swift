@@ -6,6 +6,7 @@ import Foundation
 struct SpeciesResponse : Decodable {
     let count: Int
     let results: [Species]
+    let next: String?
 }
 
 /// Species object returned as part of the `SpeciesResponse` object from the `getSpeciesList` endpoint

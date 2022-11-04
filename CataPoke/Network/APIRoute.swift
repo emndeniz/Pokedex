@@ -33,16 +33,18 @@ enum APIRoute {
         }
     }
 
-    func asRequest() -> URLRequest {
+    func asRequest() -> URLRequest? {
         guard let url = url else {
-            preconditionFailure("Missing URL for route: \(self)")
+            Logger.log.error("Missing URL for route: \(self)")
+            return nil
         }
 
         var components = URLComponents(url: url, resolvingAgainstBaseURL: false)
         components?.queryItems = parameters
 
         guard let parametrizedURL = components?.url else {
-            preconditionFailure("Missing URL with parameters for url: \(url)")
+            Logger.log.error("Missing URL with parameters for url: \(url)")
+            return nil
         }
 
         return URLRequest(url: parametrizedURL)

@@ -11,9 +11,28 @@
 import Foundation
 
 final class ListInteractor {
+    
+    private var requestHandler: RequestHandling
+    
+    private var limit : Int
+    
+    // Limit is set to 50 as default, but it can be change by presenter
+    init(requestHandler:RequestHandler, limit: Int = 50) {
+        self.requestHandler = requestHandler
+        self.limit = limit
+    }
 }
 
 // MARK: - Extensions -
 
 extension ListInteractor: ListInteractorInterface {
+    
+    func getPokemons(pageNum:Int, _ completion:@escaping ((Result<SpeciesResponse, APIError>) -> Void)) {
+        
+        let offset = limit * pageNum
+        requestHandler.request(route: .getSpeciesList(limit: limit, offset: offset)) { (result:Result<SpeciesResponse, APIError>) in
+            completion(result)
+        }
+        
+    }
 }

@@ -11,15 +11,29 @@
 import Foundation
 
 final class ListPresenter {
-
+    
     // MARK: - Private properties -
-
+    
     private unowned let view: ListViewInterface
     private let interactor: ListInteractorInterface
     private let wireframe: ListWireframeInterface
-
+    
+    // Pagination number
+    private var pageNum = 0
+    // Boolean that indicates is new page available or not.
+    // In case next is nil we won't request new data.
+    private var isNewPageExist = true
+    
+    
+    private let lastIndexToFetchNewData = 3
+    
+    var species: [Species] = [] {
+        didSet {
+            view.refreshList()
+        }
+    }
     // MARK: - Lifecycle -
-
+    
     init(
         view: ListViewInterface,
         interactor: ListInteractorInterface,
@@ -34,4 +48,35 @@ final class ListPresenter {
 // MARK: - Extensions -
 
 extension ListPresenter: ListPresenterInterface {
+    var numberOfCells: Int {
+        return species.count
+    }
+    
+    func cellForRowIndex(index: Int) -> Species {
+        // Check that we should request more data
+        if isNewPageExist && ((species.count - index) <= lastIndexToFetchNewData) {
+            getNewPokemons()
+        }
+        
+        return species[index]
+    }
+    
+    
+    func getNewPokemons() {
+        interactor.getPokemons(pageNum: pageNum) { [weak self ] (result:Result<SpeciesResponse, APIError>)  in
+            guard let self = self else { return }
+            switch result {
+                
+            case .success(let response):
+                self.species.append(contentsOf: response.results)
+                
+                self.isNewPageExist = response.next != nil
+                self.pageNum += 1
+            case .failure(let err):
+                //TODO: add error popups
+                print("Error")
+            }
+        }
+    }
+    
 }

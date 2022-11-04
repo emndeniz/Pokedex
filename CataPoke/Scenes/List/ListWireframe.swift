@@ -20,7 +20,7 @@ final class ListWireframe: BaseWireframe<ListViewController> {
         let moduleViewController = ListViewController()
         super.init(viewController: moduleViewController)
 
-        let interactor = ListInteractor()
+        let interactor = ListInteractor(requestHandler: RequestHandler())
         let presenter = ListPresenter(view: moduleViewController, interactor: interactor, wireframe: self)
         moduleViewController.presenter = presenter
     }

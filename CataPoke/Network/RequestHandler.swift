@@ -38,7 +38,12 @@ class RequestHandler : RequestHandling {
     ///   - completion: Completion with Service Result, may contain Decodable response or APIError
     func request<T>(route: APIRoute, completion: @escaping (Result<T, APIError>) -> Void) where T : Decodable {
         
-        execute(route.asRequest()) { result in
+        guard let request = route.asRequest() else {
+            completion(.failure(.invalidRequest))
+            return
+        }
+        
+        execute(request) { result in
             switch result {
             case .success(let data):
                 let decoder = JSONDecoder()
