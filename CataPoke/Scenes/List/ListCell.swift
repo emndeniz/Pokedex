@@ -32,6 +32,7 @@ class ListCell: UITableViewCell {
     
     
     private func commonInit(){
+        contentView.backgroundColor = .defaultBackgroundColor
         contentView.addSubview(cellImageView)
         contentView.addSubview(nameLabel)
         

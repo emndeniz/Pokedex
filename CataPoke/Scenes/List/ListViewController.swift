@@ -22,6 +22,8 @@ final class ListViewController: UIViewController {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(ListCell.self, forCellReuseIdentifier: ListCell.reuseIdentifier)
+        tableView.backgroundColor = .defaultBackgroundColor
+        tableView.separatorStyle = .none
         return tableView
     }()
 
@@ -30,7 +32,7 @@ final class ListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
+        view.backgroundColor = .defaultBackgroundColor
         title = "POKéMON"
 
         setupViews()
