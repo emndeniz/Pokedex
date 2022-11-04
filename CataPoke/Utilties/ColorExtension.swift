@@ -10,6 +10,7 @@ import UIKit
 
 extension UIColor {
     static let defaultBackgroundColor:UIColor = UIColor(named: "defaultBackgroundColor")!
+    static let cellBackgroundcolor:UIColor = UIColor(named: "cellBackgroundcolor")!
     static let primaryColor:UIColor = UIColor(named: "primaryColor")!
     static let primaryDarkColor:UIColor = UIColor(named: "primaryDarkColor")!
     static let primaryLightColor:UIColor = UIColor(named: "primaryLightColor")!

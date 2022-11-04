@@ -1,7 +1,7 @@
 import UIKit
 import Kingfisher
 
-class ListCell: UITableViewCell {
+class ListCell: UICollectionViewCell {
     static let reuseIdentifier = "ListCell"
     
     private let cellImageView: UIImageView = {
@@ -16,12 +16,13 @@ class ListCell: UITableViewCell {
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 24, weight: .thin)
         return label
         
     }()
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         commonInit()
     }
     
@@ -30,23 +31,20 @@ class ListCell: UITableViewCell {
         commonInit()
     }
     
-    
     private func commonInit(){
-        contentView.backgroundColor = .defaultBackgroundColor
+        contentView.backgroundColor = .cellBackgroundcolor
         contentView.addSubview(cellImageView)
         contentView.addSubview(nameLabel)
+        contentView.layer.cornerRadius = 12
         
         NSLayoutConstraint.activate([
             
             cellImageView.widthAnchor.constraint(equalToConstant: 80),
             cellImageView.heightAnchor.constraint(equalToConstant: 80),
-            cellImageView.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 8),
-            cellImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            
-            nameLabel.leadingAnchor.constraint(equalTo: cellImageView.trailingAnchor, constant: 12),
-            nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
-            nameLabel.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 8),
-            nameLabel.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor, constant: -8),
+            cellImageView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 8),
+            cellImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            nameLabel.topAnchor.constraint(equalTo: cellImageView.safeAreaLayoutGuide.bottomAnchor, constant: 8),
+            nameLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
         ])
         
         
@@ -63,9 +61,7 @@ class ListCell: UITableViewCell {
             return
         }
         
-        
         cellImageView.kf.setImage(with: imageURL,
-                                  placeholder: UIImage(named: "PlaceholderImage"),
                                   options: [
                                     .transition(.fade(1)),
                                     .cacheOriginalImage

@@ -19,15 +19,8 @@ final class ListViewController: UIViewController {
     
     // MARK: - Private properties -
     
-    private let tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(ListCell.self, forCellReuseIdentifier: ListCell.reuseIdentifier)
-        tableView.backgroundColor = .defaultBackgroundColor
-        tableView.separatorStyle = .none
-        return tableView
-    }()
-    
+    private var collectionView: UICollectionView!
+
     private let indicator:NVActivityIndicatorView = {
         let frame = CGRect(x: 0, y: 0, width: 100, height: 100)
         let indicator = NVActivityIndicatorView(frame: frame, type: .ballRotateChase)
@@ -45,31 +38,47 @@ final class ListViewController: UIViewController {
         view.backgroundColor = .defaultBackgroundColor
         title = "POKéMON"
         
+        createCollectionView()
         setupViews()
         presenter.getNewPokemons()
         
     }
     
+    /// Creates the collection view.
+    /// This function has to be called before setupViews. Because of the 'self' usage it can not be lazy loaded.
+    private func createCollectionView() {
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        
+        // Purpose of this calculation to have two equal columns on the screen.
+        let calculatedWidth = (self.view.frame.size.width - 30)/2
+        layout.itemSize = CGSize(width: calculatedWidth, height: 140)
+        layout.scrollDirection = .vertical
+        
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.register(ListCell.self, forCellWithReuseIdentifier: ListCell.reuseIdentifier)
+        collectionView.backgroundColor = .defaultBackgroundColor
+        
+        collectionView.dataSource = self
+        collectionView.delegate = self
+    }
+    
     private func setupViews() {
-        view.addSubview(tableView)
+        view.addSubview(collectionView)
         view.addSubview(indicator)
-        
 
-        
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             
             indicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             indicator.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
-        
-        tableView.dataSource = self
-        tableView.delegate = self
     }
-    
 }
 
 // MARK: - Extensions -
@@ -77,35 +86,31 @@ final class ListViewController: UIViewController {
 extension ListViewController: ListViewInterface {
     func refreshList() {
         indicator.stopAnimating()
-        tableView.reloadData()
+        collectionView.reloadData()
     }
     
 }
 
-extension ListViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+extension ListViewController : UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return presenter.numberOfCells
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: ListCell.reuseIdentifier, for: indexPath) as! ListCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ListCell.reuseIdentifier, for: indexPath) as! ListCell
         
         let data = presenter.cellForRowIndex(index: indexPath.row)
         cell.configureCel(specy: data)
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100;
-    }
+    
 }
 
-extension ListViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        //let viewController = DetailsViewController(species: species[indexPath.row])
-        //navigationController?.pushViewController(viewController, animated: true)
+
+extension ListViewController : UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("index:\(indexPath.row)")
     }
 }
 
