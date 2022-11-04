@@ -48,8 +48,8 @@ final class ListViewController: UIViewController {
                    tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
                ])
 
-               tableView.dataSource = self
-               tableView.delegate = self
+        tableView.dataSource = self
+        tableView.delegate = self
     }
 
 }
@@ -69,13 +69,15 @@ extension ListViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: ListCell.reuseIdentifier, for: indexPath)
-        cell.textLabel?.text = presenter.cellForRowIndex(index: indexPath.row).name
-
-        // TODO Fetch the image remotely, based on the Pokémon ID ("list index + 1")
-        // TODO This requires `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{species_id}.png`
-        cell.imageView?.image = UIImage(named: "PlaceholderImage")
+        let cell = tableView.dequeueReusableCell(withIdentifier: ListCell.reuseIdentifier, for: indexPath) as! ListCell
+        
+        let data = presenter.cellForRowIndex(index: indexPath.row)
+        cell.configureCel(specy: data)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100;
     }
 }
 
@@ -87,3 +89,5 @@ extension ListViewController: UITableViewDelegate {
         //navigationController?.pushViewController(viewController, animated: true)
     }
 }
+
+
