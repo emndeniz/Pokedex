@@ -36,8 +36,8 @@ final class ListViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .defaultBackgroundColor
-        title = "POKéMON"
-        
+        title = "POKéDEX"
+    
         createCollectionView()
         setupViews()
         presenter.getNewPokemons()
@@ -110,7 +110,7 @@ extension ListViewController : UICollectionViewDataSource {
 
 extension ListViewController : UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("index:\(indexPath.row)")
+        presenter.didSelectRow(index: indexPath.row)
     }
 }
 

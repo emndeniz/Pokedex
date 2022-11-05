@@ -48,6 +48,8 @@ final class ListPresenter {
 // MARK: - Extensions -
 
 extension ListPresenter: ListPresenterInterface {
+
+    
     var numberOfCells: Int {
         return species.count
     }
@@ -77,6 +79,10 @@ extension ListPresenter: ListPresenterInterface {
                 print("Error")
             }
         }
+    }
+    func didSelectRow(index: Int) {
+        let id = StringUtilities.getPokemonIDFromSpeciesResponse(urlStr: species[index].url.absoluteString)
+        wireframe.navigateToDetails(specyURL: species[index].url)
     }
     
 }

@@ -11,6 +11,7 @@
 import UIKit
 
 protocol ListWireframeInterface: WireframeInterface {
+    func navigateToDetails(specyURL:URL)
 }
 
 protocol ListViewInterface: ViewInterface {
@@ -21,6 +22,7 @@ protocol ListPresenterInterface: PresenterInterface {
     func getNewPokemons()
     var numberOfCells: Int {get}
     func cellForRowIndex(index:Int) -> Species
+    func didSelectRow(index: Int)
 }
 
 protocol ListInteractorInterface: InteractorInterface {

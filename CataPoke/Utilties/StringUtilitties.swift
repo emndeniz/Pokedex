@@ -29,4 +29,9 @@ struct StringUtilities {
         return URL(string: imageURLStr)
     }
     
+    static func getDreamWorldImages(id:String) -> URL?{
+        let urlStr = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/\(id).png"
+        return URL(string: urlStr)
+    }
+    
 }

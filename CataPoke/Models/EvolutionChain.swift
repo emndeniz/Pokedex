@@ -10,4 +10,9 @@ struct EvolutionChainDetails : Decodable{
 struct ChainLink : Decodable{
     let species: Species
     let evolvesTo: [ChainLink]
+    
+    enum CodingKeys: String, CodingKey {
+        case species
+        case evolvesTo = "evolves_to"
+    }
 }

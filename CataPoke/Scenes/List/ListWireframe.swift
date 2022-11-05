@@ -30,4 +30,8 @@ final class ListWireframe: BaseWireframe<ListViewController> {
 // MARK: - Extensions -
 
 extension ListWireframe: ListWireframeInterface {
+    func navigateToDetails(specyURL: URL) {
+        navigationController?.pushWireframe(DetailsWireframe(specyURL: specyURL))
+    }
+    
 }
