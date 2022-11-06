@@ -14,7 +14,7 @@ protocol DetailsWireframeInterface: WireframeInterface {
 }
 
 protocol DetailsViewInterface: ViewInterface {
-    func updateUI(model:DetailsViewModel)
+    func updateUI(model:CompleteDetailResponse)
 }
 
 protocol DetailsPresenterInterface: PresenterInterface {
@@ -22,14 +22,5 @@ protocol DetailsPresenterInterface: PresenterInterface {
 }
 
 protocol DetailsInteractorInterface: InteractorInterface {
-    func getSpecyDetails(url:URL, completion:@escaping ((Result<SpeciesDetails, APIError>) -> Void))
-    func getEvelolutionChain(url:URL, completion:@escaping ((Result<EvolutionChainDetails, APIError>) -> Void))
-    func getHeaderImageURL(url:URL) -> URL?
-}
-
-struct DetailsViewModel {
-    let name: String
-    let imageURL: URL?
-    
-    //TODO: Add evolution
+    func getDetails(url:URL, completion: @escaping DetailsInteractorCompletion)
 }

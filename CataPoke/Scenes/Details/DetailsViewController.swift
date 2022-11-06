@@ -13,84 +13,139 @@ import Kingfisher
 import NVActivityIndicatorView
 
 final class DetailsViewController: UIViewController {
-
+    
     // MARK: - Public properties -
-
+    
     var presenter: DetailsPresenterInterface!
+    
+    // MARK: - Scroll View properties -
 
-    // MARK: - Private properties -
+    private let scrollViewContainer: UIStackView = {
+        let view = UIStackView()
+        view.axis = .vertical
+        view.spacing = 24
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     
+    private let scrollView: UIScrollView = {
+        let scroll = UIScrollView()
+        scroll.translatesAutoresizingMaskIntoConstraints = false
+        scroll.contentInsetAdjustmentBehavior = .never
+        return scroll
+    }()
     
-
+    private let contentView: UIView = {
+        let uiView = UIView()
+        uiView.translatesAutoresizingMaskIntoConstraints = false
+        return uiView
+    }()
     
+    // MARK: - Other UI properties -
     private let indicator:NVActivityIndicatorView = {
         let frame = CGRect(x: 0, y: 0, width: 100, height: 100)
-        let indicator = NVActivityIndicatorView(frame: frame, type: .ballRotateChase)
-        indicator.color = .primaryColor
+        let indicator = NVActivityIndicatorView(frame: frame, type: .ballClipRotatePulse)
+        indicator.color = .secondaryColor
         indicator.startAnimating()
         indicator.translatesAutoresizingMaskIntoConstraints = false
         return indicator
     }()
     
-    let imageView: UIImageView = {
+    
+    private let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
-        imageView.backgroundColor = .cellBackgroundcolor
+        imageView.backgroundColor = .defaultBackgroundColor
         return imageView
     }()
     
+    private let detailsComponent: PokemonDetailsComponent = {
+       let comp = PokemonDetailsComponent()
+        comp.translatesAutoresizingMaskIntoConstraints = false
+        return comp
+    }()
     
-    let nameLabel: UILabel = {
+    private let nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 24, weight: .heavy)
+        label.numberOfLines = 0
         return label
     }()
     
     
+    
     // MARK: - Lifecycle -
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .defaultBackgroundColor
         setupViews()
-        
         presenter.viewDidLoad()
         indicator.startAnimating()
+        
     }
     
     private func setupViews() {
-        // TODO Feel free to set up the screen any way you like
-
-        view.addSubview(imageView)
-        view.addSubview(indicator)
         
-        //nameLabel.text = "adasdasdasd"
-
+        view.addSubview(scrollView)
+        view.addSubview(indicator)
+        scrollView.addSubview(contentView)
+        contentView.addSubview(scrollViewContainer)
+        contentView.addSubview(imageView)
+        scrollViewContainer.addArrangedSubview(detailsComponent)
+        
         NSLayoutConstraint.activate([
-            imageView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            imageView.topAnchor.constraint(equalTo: view.topAnchor),
-            imageView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            imageView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            imageView.heightAnchor.constraint(equalToConstant: 300)
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            
+            indicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            indicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.rightAnchor.constraint(equalTo: scrollView.rightAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.leftAnchor.constraint(equalTo: scrollView.leftAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            
+           
+            imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            imageView.heightAnchor.constraint(equalToConstant: 300),
+            
+            
+            scrollViewContainer.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            scrollViewContainer.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 24),
+            scrollViewContainer.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
+            scrollViewContainer.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12)
+            
         ])
+        
     }
-
-
+    
+    
 }
 
-// MARK: - Extensions -
+
 
 extension DetailsViewController: DetailsViewInterface {
-    func updateUI(model: DetailsViewModel) {
+    func updateUI(model: CompleteDetailResponse) {
         imageView.kf.setImage(with: model.imageURL,
-                                 options: [
-                                   .transition(.fade(1)),
-                                   .cacheOriginalImage
-                                 ])
+                              options: [
+                                .transition(.fade(1)),
+                                .cacheOriginalImage
+                              ])
+        imageView.backgroundColor = UIColor.getMatchingColor(colorName: model.color)
         
+        detailsComponent.setData(name: model.name, habitat: model.habitat)
         indicator.stopAnimating()
+        
     }
+    
     
 }

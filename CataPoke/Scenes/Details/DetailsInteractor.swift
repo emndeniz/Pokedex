@@ -10,6 +10,8 @@
 
 import Foundation
 
+
+typealias DetailsInteractorCompletion = ((Result<CompleteDetailResponse, APIError>) -> Void)
 final class DetailsInteractor {
     
     private var requestHandler: RequestHandling
@@ -24,26 +26,79 @@ final class DetailsInteractor {
 extension DetailsInteractor: DetailsInteractorInterface {
 
     
-    func getSpecyDetails(url:URL, completion: @escaping ((Result<SpeciesDetails, APIError>) -> Void)) {
+    func getDetails(url:URL, completion: @escaping DetailsInteractorCompletion){
+        requestHandler.request(route: .getSpecies(url)) { [weak self] (result:Result<SpeciesDetails, APIError>) in
+            guard let self = self else {return}
             
-        requestHandler.request(route: .getSpecies(url)) { (result:Result<SpeciesDetails, APIError>) in
-            completion(result)
+            switch result {
+                
+            case .success(let response):
+                self.fetchEvolutionDetails(url: response.evolutionChain.url, specyDetail: response, completion: completion)
+                
+            case .failure(let err):
+                //TODO: add error popups
+                completion(.failure(err))
+            }
         }
+    }
+    
+    /// Fetches evolution details
+    /// - Parameters:
+    ///   - url: url to fetch evolution
+    ///   - specyDetail: specy detail response model
+    ///   - completion: completion
+    private func fetchEvolutionDetails(url:URL,specyDetail: SpeciesDetails,completion: @escaping DetailsInteractorCompletion ){
+        requestHandler.request(route: .getEvolutionChain(url)) { [weak self] (result:Result<EvolutionChainDetails, APIError>) in
+            guard let self = self else {return}
+            switch result {
+                
+            case .success(let evlotutionResponse):
+             
+                
+                let mergedResponse = self.mergeResponses(specyDetails: specyDetail, evolutionDetails: evlotutionResponse)
+                completion(.success(mergedResponse))
+            case .failure(let err):
+                completion(.failure(err))
+            }
+        }
+    }
+    
+    /// Merges given two responses and create simple response model for presenter
+    /// - Parameters:
+    ///   - specyDetails: specy details response model
+    ///   - evolutionDetails: evolution details response model
+    /// - Returns: CompleteDetailResponse that contains merged response
+    private func mergeResponses(specyDetails: SpeciesDetails, evolutionDetails: EvolutionChainDetails) -> CompleteDetailResponse{
         
+        var evolutionChain: [Species] = []
+        
+        self.flattenEvolutionChain(evolutionChain: &evolutionChain, chainLink: evolutionDetails.chain)
+        
+        return CompleteDetailResponse(name: specyDetails.name,
+                                      imageURL: StringUtilities.getBigPokemonImage(id: specyDetails.id),
+                                      color: specyDetails.color.name,
+                                      habitat: specyDetails.habitat.name,
+                                      evolutionChain: evolutionChain)
     }
     
-    func getEvelolutionChain(url:URL, completion: @escaping ((Result<EvolutionChainDetails, APIError>) -> Void)) {
-        requestHandler.request(route: .getEvolutionChain(url)) { (result:Result<EvolutionChainDetails, APIError>) in
-            completion(result)
+    /// Flattens given chain link
+    /// - Parameters:
+    ///   - evolutionChain: Evolotioun chain array
+    ///   - chainLink: Given chain link
+    private func flattenEvolutionChain(evolutionChain: inout [Species], chainLink: ChainLink){
+        evolutionChain.append(chainLink.species)
+        if !chainLink.evolvesTo.isEmpty{
+            flattenEvolutionChain(evolutionChain: &evolutionChain,
+                                  chainLink: chainLink.evolvesTo[0])
         }
     }
-    
-    func getHeaderImageURL(url:URL) -> URL? {
-        // This is a hacky way to get nice big image from API.
-        // Correct way to send another request via 'pokeapi.co/api/v2/pokemon/{pokemonId}/'
-        // I don't prefer to send so much request in a single scene, I think api should provide simpler approach.
-        let id = StringUtilities.getPokemonIDFromSpeciesResponse(urlStr: url.absoluteString)
-        return StringUtilities.getDreamWorldImages(id: id)
-    }
-    
+}
+
+
+struct CompleteDetailResponse {
+    let name: String
+    let imageURL: URL?
+    let color: String
+    let habitat: String
+    let evolutionChain : [Species]
 }
