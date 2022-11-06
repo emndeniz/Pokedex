@@ -10,7 +10,7 @@ import UIKit
 /// This component contains all UI elements in detail view controller except Pokemon image.
 class PokemonDetailsComponent: UIView {
 
-    private let stackView: UIStackView = {
+    private let containerStackView: UIStackView = {
         let view = UIStackView()
         view.axis = .vertical
         view.spacing = 12
@@ -26,12 +26,20 @@ class PokemonDetailsComponent: UIView {
         label.numberOfLines = 0
         return label
     }()
-    
+
+    private let pokedexId: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 24, weight: .light)
+        label.textColor = .primaryTextColor
+        label.numberOfLines = 0
+        return label
+    }()
     
     private let habitatLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 18, weight: .light)
+        label.font = .systemFont(ofSize: 24, weight: .light)
         label.textColor = .primaryTextColor
         label.numberOfLines = 0
         return label
@@ -41,7 +49,7 @@ class PokemonDetailsComponent: UIView {
     private let imageContainer: UIStackView = {
         let view = UIStackView()
         view.axis = .horizontal
-        view.spacing = 12
+        view.spacing = 8
         view.alignment = .leading
         view.distribution = .fill
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -70,6 +78,13 @@ class PokemonDetailsComponent: UIView {
         return view
     }()
     
+    
+    private let evolutionChainComponent : EvolutionChainComponent = {
+       let evolutionComp = EvolutionChainComponent()
+        evolutionComp.translatesAutoresizingMaskIntoConstraints = false
+        return evolutionComp
+    }()
+    
    
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -84,24 +99,21 @@ class PokemonDetailsComponent: UIView {
     
     private func commonInit(){
         
-        self.addSubview(stackView)
-        stackView.addArrangedSubview(nameLabel)
-        stackView.addArrangedSubview(habitatLabel)
-        stackView.addArrangedSubview(imageContainer)
-        
-        imageContainer.addArrangedSubview(mythicalImage)
-        imageContainer.addArrangedSubview(legendaryImage)
-        imageContainer.addArrangedSubview(spacer)
+        self.addSubview(containerStackView)
+        containerStackView.addArrangedSubview(nameLabel)
+        containerStackView.addArrangedSubview(pokedexId)
+        containerStackView.addArrangedSubview(habitatLabel)
+        containerStackView.addArrangedSubview(imageContainer)
         self.backgroundColor = .defaultBackgroundColor
-        setupViews()
+        setupViewConstarints()
     }
     
-    private func setupViews(){
+    private func setupViewConstarints(){
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: self.topAnchor),
-            stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            containerStackView.topAnchor.constraint(equalTo: self.topAnchor),
+            containerStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            containerStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            containerStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             
             legendaryImage.widthAnchor.constraint(equalToConstant: 48),
             legendaryImage.heightAnchor.constraint(equalToConstant: 48),
@@ -110,9 +122,24 @@ class PokemonDetailsComponent: UIView {
         ])
     }
     
-    func setData(name:String,
-                 habitat:String){
-        nameLabel.text = name.capitalized
-        habitatLabel.text = "habitatOfThePokemon".localized(habitat.capitalized)
+    func setData(data:CompleteDetailResponse){
+        nameLabel.text = data.name.capitalized
+        pokedexId.text = "idOfThePokemon".localized(data.id)
+        habitatLabel.text = "habitatOfThePokemon".localized(data.habitat.capitalized)
+        
+        
+        if data.isMytical {
+            imageContainer.addArrangedSubview(mythicalImage)
+        }
+        
+        if data.isLegendary{
+            imageContainer.addArrangedSubview(legendaryImage)
+        }
+        
+        imageContainer.addArrangedSubview(spacer)
+        
+        containerStackView.addArrangedSubview(evolutionChainComponent)
+        evolutionChainComponent.setData(data: data)
+        
     }
 }

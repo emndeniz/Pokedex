@@ -81,7 +81,6 @@ extension ListPresenter: ListPresenterInterface {
         }
     }
     func didSelectRow(index: Int) {
-        let id = StringUtilities.getPokemonIDFromSpeciesResponse(urlStr: species[index].url.absoluteString)
         wireframe.navigateToDetails(specyURL: species[index].url)
     }
     

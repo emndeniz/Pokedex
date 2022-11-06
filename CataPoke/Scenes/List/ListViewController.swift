@@ -23,8 +23,8 @@ final class ListViewController: UIViewController {
 
     private let indicator:NVActivityIndicatorView = {
         let frame = CGRect(x: 0, y: 0, width: 100, height: 100)
-        let indicator = NVActivityIndicatorView(frame: frame, type: .ballRotateChase)
-        indicator.color = .primaryColor
+        let indicator = NVActivityIndicatorView(frame: frame, type: .ballClipRotatePulse)
+        indicator.color = .secondaryColor
         indicator.startAnimating()
         indicator.translatesAutoresizingMaskIntoConstraints = false
         return indicator

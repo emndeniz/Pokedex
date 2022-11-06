@@ -8,10 +8,14 @@ struct SpeciesDetails : Decodable {
     let evolutionChain: EvolutionChain
     let color: Pairs
     let habitat: Pairs
+    let isMytical: Bool
+    let isLegendary: Bool
     enum CodingKeys: String, CodingKey {
         case name
         case id
         case evolutionChain = "evolution_chain"
+        case isLegendary = "is_legendary"
+        case isMytical = "is_mythical"
         case color
         case habitat
     }

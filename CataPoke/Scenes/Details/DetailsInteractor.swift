@@ -75,9 +75,12 @@ extension DetailsInteractor: DetailsInteractorInterface {
         self.flattenEvolutionChain(evolutionChain: &evolutionChain, chainLink: evolutionDetails.chain)
         
         return CompleteDetailResponse(name: specyDetails.name,
-                                      imageURL: StringUtilities.getBigPokemonImage(id: specyDetails.id),
+                                      id: specyDetails.id,
+                                      imageURL: StringUtilities.getBigPokemonImageFromId(id: specyDetails.id),
                                       color: specyDetails.color.name,
                                       habitat: specyDetails.habitat.name,
+                                      isMytical: specyDetails.isMytical,
+                                      isLegendary: specyDetails.isLegendary,
                                       evolutionChain: evolutionChain)
     }
     
@@ -97,8 +100,11 @@ extension DetailsInteractor: DetailsInteractorInterface {
 
 struct CompleteDetailResponse {
     let name: String
+    let id : Int
     let imageURL: URL?
     let color: String
     let habitat: String
+    let isMytical: Bool
+    let isLegendary : Bool
     let evolutionChain : [Species]
 }

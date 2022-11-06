@@ -29,9 +29,23 @@ struct StringUtilities {
         return URL(string: imageURLStr)
     }
     
-    static func getBigPokemonImage(id:Int) -> URL?{
+    /// Retrieves big pokemon image from given ID
+    /// - Parameter id: pokemon ID
+    /// - Returns: Image URL
+    static func getBigPokemonImageFromId(id:Int) -> URL?{
         let urlStr = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/\(id).png"
         return URL(string: urlStr)
+    }
+    
+    /// Retrieves big pokemon image from given url
+    /// - Parameter urlStr: Url string
+    /// - Returns: Image Url
+    static func getBigPokemonImageFromSpecyUrl(urlStr:String) -> URL?{
+        guard let id = Int(getPokemonIDFromSpeciesResponse(urlStr: urlStr)) else {
+            return nil
+        }
+
+        return getBigPokemonImageFromId(id: id)
     }
     
 }

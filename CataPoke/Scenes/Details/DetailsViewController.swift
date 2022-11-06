@@ -85,7 +85,7 @@ final class DetailsViewController: UIViewController {
         setupViews()
         presenter.viewDidLoad()
         indicator.startAnimating()
-        
+        navigationController?.navigationBar.tintColor = .secondaryTextColor
     }
     
     private func setupViews() {
@@ -142,7 +142,7 @@ extension DetailsViewController: DetailsViewInterface {
                               ])
         imageView.backgroundColor = UIColor.getMatchingColor(colorName: model.color)
         
-        detailsComponent.setData(name: model.name, habitat: model.habitat)
+        detailsComponent.setData(data: model)
         indicator.stopAnimating()
         
     }
