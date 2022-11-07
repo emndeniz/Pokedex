@@ -9,7 +9,6 @@
 //
 
 import UIKit
-import NVActivityIndicatorView
 
 final class ListViewController: UIViewController {
     
@@ -21,12 +20,10 @@ final class ListViewController: UIViewController {
     
     private var collectionView: UICollectionView!
 
-    private let indicator:NVActivityIndicatorView = {
-        let frame = CGRect(x: 0, y: 0, width: 100, height: 100)
-        let indicator = NVActivityIndicatorView(frame: frame, type: .ballClipRotatePulse)
-        indicator.color = .secondaryColor
-        indicator.startAnimating()
+    private let indicator:PokeIndicator = {
+        let indicator = PokeIndicator(frame: CGRect(x: 0, y: 0, width: 120, height: 120))
         indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.startAnimating()
         return indicator
     }()
     
@@ -53,7 +50,7 @@ final class ListViewController: UIViewController {
         
         // Purpose of this calculation to have two equal columns on the screen.
         let calculatedWidth = (self.view.frame.size.width - 30)/2
-        layout.itemSize = CGSize(width: calculatedWidth, height: 140)
+        layout.itemSize = CGSize(width: calculatedWidth, height: 160)
         layout.scrollDirection = .vertical
         
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -68,6 +65,7 @@ final class ListViewController: UIViewController {
     private func setupViews() {
         view.addSubview(collectionView)
         view.addSubview(indicator)
+        
 
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),

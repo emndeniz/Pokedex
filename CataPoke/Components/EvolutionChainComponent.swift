@@ -10,6 +10,16 @@ import Kingfisher
 
 class EvolutionChainComponent: UIView {
     
+    private let sectionLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 24, weight: .medium)
+        label.textColor = .primaryTextColor
+        label.text = "evolutionChain".localized
+        label.numberOfLines = 0
+        return label
+    }()
+    
     private let containerStackView: UIStackView = {
         let view = UIStackView()
         view.axis = .vertical
@@ -33,6 +43,7 @@ class EvolutionChainComponent: UIView {
         
         self.addSubview(containerStackView)
         
+        containerStackView.addArrangedSubview(sectionLabel)
         setupViewConstarints()
     }
     

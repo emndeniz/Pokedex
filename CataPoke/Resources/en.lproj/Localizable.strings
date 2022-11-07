@@ -6,5 +6,6 @@
   
 */
 
-"idOfThePokemon" = "Pokedex Id: %@";
+"pokedexNo" = "No: %@";
 "habitatOfThePokemon" = "Habitat: %@";
+"evolutionChain" = "Evolution Chain";

@@ -85,7 +85,7 @@ class PokemonDetailsComponent: UIView {
         return evolutionComp
     }()
     
-   
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -115,6 +115,7 @@ class PokemonDetailsComponent: UIView {
             containerStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             containerStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             
+            
             legendaryImage.widthAnchor.constraint(equalToConstant: 48),
             legendaryImage.heightAnchor.constraint(equalToConstant: 48),
             mythicalImage.widthAnchor.constraint(equalToConstant: 48),
@@ -124,7 +125,7 @@ class PokemonDetailsComponent: UIView {
     
     func setData(data:CompleteDetailResponse){
         nameLabel.text = data.name.capitalized
-        pokedexId.text = "idOfThePokemon".localized(data.id)
+        pokedexId.text = "pokedexNo".localized(String(data.id))
         habitatLabel.text = "habitatOfThePokemon".localized(data.habitat.capitalized)
         
         

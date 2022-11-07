@@ -23,9 +23,9 @@ final class ListPresenter {
     // Boolean that indicates is new page available or not.
     // In case next is nil we won't request new data.
     private var isNewPageExist = true
-    
-    
-    private let lastIndexToFetchNewData = 3
+    private var isFetchingnewData = false
+    // After this count presenter will fetch new page
+    private let lastIndexToFetchNewData = 4
     
     var species: [Species] = [] {
         didSet {
@@ -65,6 +65,13 @@ extension ListPresenter: ListPresenterInterface {
     
     
     func getNewPokemons() {
+        
+        guard !isFetchingnewData else {
+            // This will prevent fetching next page before the previous one received
+            return
+        }
+        
+        isFetchingnewData = true
         interactor.getPokemons(pageNum: pageNum) { [weak self ] (result:Result<SpeciesResponse, APIError>)  in
             guard let self = self else { return }
             switch result {
@@ -78,8 +85,10 @@ extension ListPresenter: ListPresenterInterface {
                 //TODO: add error popups
                 print("Error")
             }
+            self.isFetchingnewData = false
         }
     }
+    
     func didSelectRow(index: Int) {
         wireframe.navigateToDetails(specyURL: species[index].url)
     }

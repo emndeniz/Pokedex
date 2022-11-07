@@ -10,7 +10,6 @@
 
 import UIKit
 import Kingfisher
-import NVActivityIndicatorView
 
 final class DetailsViewController: UIViewController {
     
@@ -42,12 +41,10 @@ final class DetailsViewController: UIViewController {
     }()
     
     // MARK: - Other UI properties -
-    private let indicator:NVActivityIndicatorView = {
-        let frame = CGRect(x: 0, y: 0, width: 100, height: 100)
-        let indicator = NVActivityIndicatorView(frame: frame, type: .ballClipRotatePulse)
-        indicator.color = .secondaryColor
-        indicator.startAnimating()
+    private let indicator:PokeIndicator = {
+        let indicator = PokeIndicator(frame: CGRect(x: 0, y: 0, width: 120, height: 120))
         indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.startAnimating()
         return indicator
     }()
     

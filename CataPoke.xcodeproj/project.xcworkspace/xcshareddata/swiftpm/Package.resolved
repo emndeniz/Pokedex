@@ -10,12 +10,12 @@
       }
     },
     {
-      "identity" : "nvactivityindicatorview",
+      "identity" : "lottie-ios",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/ninjaprox/NVActivityIndicatorView.git",
+      "location" : "https://github.com/airbnb/lottie-ios.git",
       "state" : {
         "branch" : "master",
-        "revision" : "93f5bdb857cbf545a281cd08f7954ddea76855a5"
+        "revision" : "abe71a75e0ff9b1ac299962d749cc2a767fbc9d1"
       }
     },
     {
