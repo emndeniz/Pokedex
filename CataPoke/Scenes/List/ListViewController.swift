@@ -82,11 +82,18 @@ final class ListViewController: UIViewController {
 // MARK: - Extensions -
 
 extension ListViewController: ListViewInterface {
+    func dismissAlert() {
+        self.navigationController?.dismiss(animated: true)
+    }
+    
+    
     func refreshList() {
-        indicator.stopAnimating()
         collectionView.reloadData()
     }
     
+    func dismissIndicator() {
+        indicator.stopAnimating()
+    }
 }
 
 extension ListViewController : UICollectionViewDataSource {

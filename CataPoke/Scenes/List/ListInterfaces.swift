@@ -16,6 +16,8 @@ protocol ListWireframeInterface: WireframeInterface {
 
 protocol ListViewInterface: ViewInterface {
     func refreshList()
+    func dismissIndicator()
+    func dismissAlert()
 }
 
 protocol ListPresenterInterface: PresenterInterface {

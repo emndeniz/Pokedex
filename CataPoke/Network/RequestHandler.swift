@@ -9,15 +9,21 @@ import Foundation
 
 
 /// Application specific error enum
-enum APIError: Error {
+enum APIError: Error, Equatable {
+    static func == (lhs: APIError, rhs: APIError) -> Bool {
+        return lhs.localizedDescription == rhs.localizedDescription
+    }
+    
 case jsonConversionFailure
 case invalidData
 case invalidRequest
+case connectionProblem
 case responseUnsuccessful(Error)
     var localizedDescription: String {
         switch self {
         case .invalidData: return "Invalid Data"
         case .responseUnsuccessful: return "Response Unsuccessful"
+        case .connectionProblem: return "Network connection not exist"
         case .invalidRequest: return "Invalid Request Type"
         case .jsonConversionFailure: return "JSON Conversion Failure"
         }
@@ -40,6 +46,11 @@ class RequestHandler : RequestHandling {
         
         guard let request = route.asRequest() else {
             completion(.failure(.invalidRequest))
+            return
+        }
+        
+        guard ConnectionManager.instance.isNetworkAccessible() else {
+            completion(.failure(.connectionProblem))
             return
         }
         

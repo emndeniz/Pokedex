@@ -82,15 +82,32 @@ extension ListPresenter: ListPresenterInterface {
                 self.isNewPageExist = response.next != nil
                 self.pageNum += 1
             case .failure(let err):
-                //TODO: add error popups
-                print("Error")
+                self.showAlertToUser(error: err)
+
             }
+            self.view.dismissIndicator()
             self.isFetchingnewData = false
         }
     }
     
     func didSelectRow(index: Int) {
         wireframe.navigateToDetails(specyURL: species[index].url)
+    }
+    
+    private func showAlertToUser(error:APIError) {
+        // List scene has pagination, we won't show connection problem message to user beacuse of not to annoy him/her.
+        if error != APIError.connectionProblem {
+            
+            let retryAction = Action(with: "retryText".localized, style: .normal) {[weak self] in
+                // This is the landing page. User should retry until it get success result.
+                // Otherwise user can not use app at all.
+                self?.view.dismissAlert()
+                self?.getNewPokemons()
+            }
+            
+            self.wireframe.showAlert(with: "errorOoops".localized, message: "failedToFetchDataMessage".localized, actions: [retryAction])
+  
+        }
     }
     
 }

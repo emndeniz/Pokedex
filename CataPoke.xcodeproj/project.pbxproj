@@ -22,6 +22,7 @@
 		0122FA872914569700118577 /* ListWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0122FA822914569700118577 /* ListWireframe.swift */; };
 		0122FA8C2915213000118577 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 0122FA8B2915213000118577 /* Kingfisher */; };
 		0139818229197F3800CD4D17 /* error-animation.json in Resources */ = {isa = PBXBuildFile; fileRef = 0139818129197F3800CD4D17 /* error-animation.json */; };
+		014D73F12919888F001DC848 /* ConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014D73F02919888F001DC848 /* ConnectionManager.swift */; };
 		0161A10C291577640019F3BC /* StringUtilitties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0161A10B291577640019F3BC /* StringUtilitties.swift */; };
 		0161A10E291589160019F3BC /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0161A10D291589160019F3BC /* ColorExtension.swift */; };
 		0161A11329158BFF0019F3BC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0161A11529158BFF0019F3BC /* Localizable.strings */; };
@@ -65,6 +66,7 @@
 		0122FA812914569700118577 /* ListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListInteractor.swift; sourceTree = "<group>"; };
 		0122FA822914569700118577 /* ListWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListWireframe.swift; sourceTree = "<group>"; };
 		0139818129197F3800CD4D17 /* error-animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "error-animation.json"; sourceTree = "<group>"; };
+		014D73F02919888F001DC848 /* ConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionManager.swift; sourceTree = "<group>"; };
 		0161A10B291577640019F3BC /* StringUtilitties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUtilitties.swift; sourceTree = "<group>"; };
 		0161A10D291589160019F3BC /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		0161A11429158BFF0019F3BC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -114,10 +116,10 @@
 		0122FA6D2914350F00118577 /* Utilties */ = {
 			isa = PBXGroup;
 			children = (
+				014D73F229198A44001DC848 /* Extensions */,
 				0122FA6E2914351D00118577 /* Logger.swift */,
 				0161A10B291577640019F3BC /* StringUtilitties.swift */,
-				0161A10D291589160019F3BC /* ColorExtension.swift */,
-				0161A11729158CD20019F3BC /* StringExtension.swift */,
+				014D73F02919888F001DC848 /* ConnectionManager.swift */,
 			);
 			path = Utilties;
 			sourceTree = "<group>";
@@ -141,6 +143,15 @@
 				0122FA772914561D00118577 /* InteractorInterface.swift */,
 			);
 			path = BaseViper;
+			sourceTree = "<group>";
+		};
+		014D73F229198A44001DC848 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0161A10D291589160019F3BC /* ColorExtension.swift */,
+				0161A11729158CD20019F3BC /* StringExtension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		0161A11029158BDA0019F3BC /* Resources */ = {
@@ -383,6 +394,7 @@
 				CE9303CC2822741F0057188E /* RequestHandling.swift in Sources */,
 				017224FE2916E60300198096 /* PokemonDetailsComponent.swift in Sources */,
 				0122FA6F2914351D00118577 /* Logger.swift in Sources */,
+				014D73F12919888F001DC848 /* ConnectionManager.swift in Sources */,
 				0122FA7C2914561D00118577 /* ViewInterface.swift in Sources */,
 				CE4C9CAD2820167200FEA589 /* SceneDelegate.swift in Sources */,
 				0122FA7B2914561D00118577 /* PresenterInterface.swift in Sources */,

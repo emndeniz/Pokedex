@@ -38,18 +38,29 @@ final class DetailsPresenter {
 
 extension DetailsPresenter: DetailsPresenterInterface {
     
-    
     func viewDidLoad() {
-        interactor.getDetails(url: specyURL) { (result:Result<CompleteDetailResponse, APIError>) in
+        interactor.getDetails(url: specyURL) { [weak self] (result:Result<CompleteDetailResponse, APIError>) in
+            guard let self = self else { return }
             switch result {
-                
             case .success(let response):
                 self.view.updateUI(model: response)
-                
-            case .failure(let rr):
-                //TODO: add error popups
-                print("Error")
+            case .failure(let err):
+                self.showAlertToUser(error: err)
             }
         }
+    }
+    
+    private func showAlertToUser(error:APIError) {
+        if error == APIError.connectionProblem {
+            self.wireframe.showAlert(with: "errorOoops".localized, message: "noInternetConnectionMessage".localized, completion: {
+                self.view.dismissView()
+            })
+            
+        }else {
+            self.wireframe.showAlert(with: "errorOoops".localized, message: "failedToFetchDataMessage".localized, completion: {
+                self.view.dismissView()
+            })
+        }
+        
     }
 }

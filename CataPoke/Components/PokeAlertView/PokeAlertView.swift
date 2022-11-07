@@ -85,7 +85,7 @@ class PokeAlertView: UIViewController {
     init(withTitle title: String?,
          message: String?,
          actions: [Action],
-         axis: NSLayoutConstraint.Axis) {
+         axis: NSLayoutConstraint.Axis = .horizontal) {
         super.init(nibName: nil, bundle: nil)
         self.actions = actions
         self.alertTitle = title
@@ -128,13 +128,13 @@ class PokeAlertView: UIViewController {
             alertBackgroundView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             alertBackgroundView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             alertBackgroundView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
+            alertBackgroundView.heightAnchor.constraint(equalToConstant: 250),
             
             containerStackView.topAnchor.constraint(equalTo: alertBackgroundView.topAnchor, constant: 8),
             containerStackView.leftAnchor.constraint(equalTo: alertBackgroundView.leftAnchor,constant: 8),
             containerStackView.rightAnchor.constraint(equalTo: alertBackgroundView.rightAnchor,constant: -8),
             containerStackView.bottomAnchor.constraint(equalTo: alertBackgroundView.bottomAnchor,constant: -8),
         
-            actionsStackView.heightAnchor.constraint(equalToConstant: 45)
         ])
         
         for action in actions {
@@ -152,8 +152,8 @@ class PokeAlertView: UIViewController {
         messageLabel.text = message
         
         // If title or message is empty just hide that...
-        titleLabel.isHidden = alertTitle != nil ? false : true
-        messageLabel.isHidden = message != nil ? false : true
+        titleLabel.isHidden = alertTitle == nil
+        messageLabel.isHidden = message == nil
     }
     
     // MARK: Convenience functions

@@ -9,3 +9,10 @@
 "pokedexNo" = "No: %@";
 "habitatOfThePokemon" = "Habitat: %@";
 "evolutionChain" = "Evolution Chain";
+
+// Error messages
+"errorOoops" = "Oops!";
+"okText" = "OK";
+"retryText" = "Retry";
+"failedToFetchDataMessage" = "Sorry we can't get what you want now, please try again later";
+"noInternetConnectionMessage" = "There is a problem with your internet connection!";

@@ -149,6 +149,8 @@ final class DetailsViewController: UIViewController {
 
 
 extension DetailsViewController: DetailsViewInterface {
+
+    
     func updateUI(model: CompleteDetailResponse) {
         imageView.kf.setImage(with: model.imageURL,
                               options: [
@@ -162,5 +164,9 @@ extension DetailsViewController: DetailsViewInterface {
         
     }
     
+    func dismissView() {
+        indicator.stopAnimating()
+        navigationController?.popViewController(animated: true)
+    }
     
 }

@@ -9,3 +9,10 @@
 "pokedexNo" = "No: %@";
 "habitatOfThePokemon" = "Habitatı: %@";
 "evolutionChain" = "Evrim Döngüsü";
+
+// Error messages
+"errorOoops" = "Hata";
+"retryText" = "Yeniden Dene";
+"okText" = "Tamam";
+"failedToFetchDataMessage" = "Şu anda istediğini yapamıyoruz, lütfen daha sonra dene";
+"noInternetConnectionMessage" = "Internet bağlantında problem var!";

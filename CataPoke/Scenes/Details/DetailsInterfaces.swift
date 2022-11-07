@@ -15,6 +15,7 @@ protocol DetailsWireframeInterface: WireframeInterface {
 
 protocol DetailsViewInterface: ViewInterface {
     func updateUI(model:CompleteDetailResponse)
+    func dismissView()
 }
 
 protocol DetailsPresenterInterface: PresenterInterface {

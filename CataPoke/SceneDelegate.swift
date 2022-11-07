@@ -11,11 +11,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         self.window = UIWindow(windowScene: windowScene)
         createInitialWireframe()
+        
+        ConnectionManager.instance.monitorNetworkConnection()
     }
     
     /// Creates Initial Wireframe to start VIPER Flow
     private func createInitialWireframe() {
-        
         
         
         let initialViewController = UINavigationController()
@@ -24,8 +25,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         initialViewController.setRootWireframe(ListWireframe())
         window?.rootViewController = initialViewController
         window?.makeKeyAndVisible()
- 
+
+    }
+}
+
+extension UIApplication {
+
+    class func getTopViewController(base: UIViewController? = UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController) -> UIViewController? {
+
         
-       
+        if let nav = base as? UINavigationController {
+            return getTopViewController(base: nav.visibleViewController)
+
+        } else if let tab = base as? UITabBarController, let selected = tab.selectedViewController {
+            return getTopViewController(base: selected)
+
+        } else if let presented = base?.presentedViewController {
+            return getTopViewController(base: presented)
+        }
+        return base
     }
 }
