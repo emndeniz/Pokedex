@@ -9,7 +9,7 @@ import UIKit
 import Lottie
 class PokeIndicator: UIView {
 
-    private let animationView: LottieAnimationView = {
+    private lazy var animationView: LottieAnimationView = {
         let animationView = LottieAnimationView(name: "pokeball-loading-animation.json")
         animationView.contentMode = .scaleAspectFit
         animationView.loopMode = .loop

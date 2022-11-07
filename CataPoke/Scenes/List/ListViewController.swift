@@ -20,7 +20,7 @@ final class ListViewController: UIViewController {
     
     private var collectionView: UICollectionView!
 
-    private let indicator:PokeIndicator = {
+    private lazy var indicator:PokeIndicator = {
         let indicator = PokeIndicator(frame: CGRect(x: 0, y: 0, width: 120, height: 120))
         indicator.translatesAutoresizingMaskIntoConstraints = false
         indicator.startAnimating()

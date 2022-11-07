@@ -19,7 +19,7 @@ final class DetailsViewController: UIViewController {
     
     // MARK: - Scroll View properties -
 
-    private let scrollViewContainer: UIStackView = {
+    private lazy var scrollViewContainer: UIStackView = {
         let view = UIStackView()
         view.axis = .vertical
         view.spacing = 24
@@ -27,21 +27,21 @@ final class DetailsViewController: UIViewController {
         return view
     }()
     
-    private let scrollView: UIScrollView = {
+    private lazy var scrollView: UIScrollView = {
         let scroll = UIScrollView()
         scroll.translatesAutoresizingMaskIntoConstraints = false
         scroll.contentInsetAdjustmentBehavior = .never
         return scroll
     }()
     
-    private let contentView: UIView = {
+    private lazy var contentView: UIView = {
         let uiView = UIView()
         uiView.translatesAutoresizingMaskIntoConstraints = false
         return uiView
     }()
     
     // MARK: - Other UI properties -
-    private let indicator:PokeIndicator = {
+    private lazy var indicator:PokeIndicator = {
         let indicator = PokeIndicator(frame: CGRect(x: 0, y: 0, width: 120, height: 120))
         indicator.translatesAutoresizingMaskIntoConstraints = false
         indicator.startAnimating()
@@ -49,7 +49,7 @@ final class DetailsViewController: UIViewController {
     }()
     
     
-    private let imageView: UIImageView = {
+    private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
@@ -57,13 +57,13 @@ final class DetailsViewController: UIViewController {
         return imageView
     }()
     
-    private let detailsComponent: PokemonDetailsComponent = {
+    private lazy var detailsComponent: PokemonDetailsComponent = {
        let comp = PokemonDetailsComponent()
         comp.translatesAutoresizingMaskIntoConstraints = false
         return comp
     }()
     
-    private let nameLabel: UILabel = {
+    private lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 24, weight: .heavy)
@@ -123,6 +123,24 @@ final class DetailsViewController: UIViewController {
             
         ])
         
+    }
+    
+    private func showCustomAlert(){
+        
+        let cancelAction = Action(with: "OK", style: .normal) {[weak self] in
+            print("Cancel pressed")
+            self?.dismiss(animated: true, completion: nil)
+        }
+        let deleteAction = Action(with: "Delete", style: .destructive) {[weak self] in
+            print("Delete pressed")
+            self?.dismiss(animated: true, completion: nil)
+        }
+        let alertVC = PokeAlertView(withTitle: "Do you wish to delete?", message: "This will delete every data you have.", actions: [cancelAction,deleteAction], axis: .horizontal)
+            
+        
+        alertVC.modalPresentationStyle = .overCurrentContext
+        alertVC.modalTransitionStyle = .crossDissolve
+        present(alertVC, animated: true, completion: nil)
     }
     
     

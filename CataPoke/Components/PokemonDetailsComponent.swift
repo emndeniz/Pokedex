@@ -10,7 +10,7 @@ import UIKit
 /// This component contains all UI elements in detail view controller except Pokemon image.
 class PokemonDetailsComponent: UIView {
 
-    private let containerStackView: UIStackView = {
+    private lazy var containerStackView: UIStackView = {
         let view = UIStackView()
         view.axis = .vertical
         view.spacing = 12
@@ -18,7 +18,7 @@ class PokemonDetailsComponent: UIView {
         return view
     }()
     
-    private let nameLabel: UILabel = {
+    private lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 36, weight: .heavy)
@@ -27,7 +27,7 @@ class PokemonDetailsComponent: UIView {
         return label
     }()
 
-    private let pokedexId: UILabel = {
+    private lazy var pokedexId: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 24, weight: .light)
@@ -36,7 +36,7 @@ class PokemonDetailsComponent: UIView {
         return label
     }()
     
-    private let habitatLabel: UILabel = {
+    private lazy var habitatLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 24, weight: .light)
@@ -46,7 +46,7 @@ class PokemonDetailsComponent: UIView {
     }()
     
     
-    private let imageContainer: UIStackView = {
+    private lazy var imageContainer: UIStackView = {
         let view = UIStackView()
         view.axis = .horizontal
         view.spacing = 8
@@ -56,7 +56,7 @@ class PokemonDetailsComponent: UIView {
         return view
     }()
     
-    private let mythicalImage: UIImageView = {
+    private lazy var mythicalImage: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
@@ -64,7 +64,7 @@ class PokemonDetailsComponent: UIView {
         return imageView
     }()
     
-    private let legendaryImage: UIImageView = {
+    private lazy var legendaryImage: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
@@ -72,14 +72,14 @@ class PokemonDetailsComponent: UIView {
         return imageView
     }()
     
-    private let spacer: UIView = {
+    private lazy var spacer: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
     
-    private let evolutionChainComponent : EvolutionChainComponent = {
+    private lazy var evolutionChainComponent : EvolutionChainComponent = {
        let evolutionComp = EvolutionChainComponent()
         evolutionComp.translatesAutoresizingMaskIntoConstraints = false
         return evolutionComp

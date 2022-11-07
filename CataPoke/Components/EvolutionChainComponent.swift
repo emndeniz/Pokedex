@@ -10,7 +10,7 @@ import Kingfisher
 
 class EvolutionChainComponent: UIView {
     
-    private let sectionLabel: UILabel = {
+    private lazy var sectionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 24, weight: .medium)
@@ -20,7 +20,7 @@ class EvolutionChainComponent: UIView {
         return label
     }()
     
-    private let containerStackView: UIStackView = {
+    private lazy var containerStackView: UIStackView = {
         let view = UIStackView()
         view.axis = .vertical
         view.spacing = 12

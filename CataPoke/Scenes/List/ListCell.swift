@@ -5,7 +5,7 @@ class ListCell: UICollectionViewCell {
     static let reuseIdentifier = "ListCell"
     
     
-    private let topContainerView: UIStackView = {
+    private lazy var topContainerView: UIStackView = {
         let view = UIStackView()
         view.axis = .horizontal
         view.spacing = 8
@@ -14,7 +14,7 @@ class ListCell: UICollectionViewCell {
     }()
     
     
-    private let pokeballImageView: UIImageView = {
+    private lazy var pokeballImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
@@ -24,7 +24,7 @@ class ListCell: UICollectionViewCell {
         return imageView
     }()
     
-    private let idLabel: UILabel = {
+    private lazy var idLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 24, weight: .thin)
@@ -32,7 +32,7 @@ class ListCell: UICollectionViewCell {
         
     }()
     
-    private let cellImageView: UIImageView = {
+    private lazy var cellImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
@@ -41,7 +41,7 @@ class ListCell: UICollectionViewCell {
         return imageView
     }()
     
-    private let nameLabel: UILabel = {
+    private lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 24, weight: .thin)
@@ -73,7 +73,6 @@ class ListCell: UICollectionViewCell {
             topContainerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             topContainerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: 8),
             topContainerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            topContainerView.heightAnchor.constraint(equalToConstant: 25),
             
             pokeballImageView.widthAnchor.constraint(equalToConstant: 24),
             pokeballImageView.heightAnchor.constraint(equalToConstant: 24),
