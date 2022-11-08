@@ -15,7 +15,6 @@ class EvolutionChainComponent: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 24, weight: .medium)
         label.textColor = .primaryTextColor
-        label.text = "evolutionChain".localized
         label.textAlignment = .center
         label.layer.cornerRadius = 8
         label.layer.masksToBounds = true
@@ -96,7 +95,7 @@ class EvolutionChainComponent: UIView {
     
     
     func setData(data:CompleteDetailResponse){
-        
+        sectionLabel.text = "evolutionChain".localized
         sectionLabel.backgroundColor = UIColor.getMatchingColor(colorName: data.color).withAlphaComponent(0.4)
         for specy in data.evolutionChain {
             let pokemonWithTitle = generatePokemonWithTitle()
