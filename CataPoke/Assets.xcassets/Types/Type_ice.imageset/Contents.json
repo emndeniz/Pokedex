@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "ice-icon-10.jpg.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

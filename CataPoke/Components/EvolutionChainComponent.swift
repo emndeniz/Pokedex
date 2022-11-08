@@ -16,6 +16,9 @@ class EvolutionChainComponent: UIView {
         label.font = .systemFont(ofSize: 24, weight: .medium)
         label.textColor = .primaryTextColor
         label.text = "evolutionChain".localized
+        label.textAlignment = .center
+        label.layer.cornerRadius = 8
+        label.layer.masksToBounds = true
         label.numberOfLines = 0
         return label
     }()
@@ -61,9 +64,24 @@ class EvolutionChainComponent: UIView {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage(named: "MythicalPokemon")
         imageView.heightAnchor.constraint(equalToConstant: 120).isActive = true
         return imageView
+    }
+    
+    private func generatePokemonWithTitle() -> PokemonWithTitleComponent {
+        let component = PokemonWithTitleComponent()
+        component.translatesAutoresizingMaskIntoConstraints = false
+        return component
+    }
+    
+    private func generateLabel() -> UILabel {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 18, weight: .medium)
+        label.textColor = .primaryTextColor
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        return label
     }
     
     private func generateArrow(color:UIColor) -> UIImageView {
@@ -79,19 +97,15 @@ class EvolutionChainComponent: UIView {
     
     func setData(data:CompleteDetailResponse){
         
+        sectionLabel.backgroundColor = UIColor.getMatchingColor(colorName: data.color).withAlphaComponent(0.4)
         for specy in data.evolutionChain {
-            let imagView = generateImage()
-            let imageUrl = StringUtilities.getBigPokemonImageFromSpecyUrl(urlStr: specy.url.absoluteString)
-            imagView.kf.setImage(with: imageUrl,
-                                 options: [
-                                    .cacheOriginalImage
-                                 ])
-            
-            containerStackView.addArrangedSubview(imagView)
+            let pokemonWithTitle = generatePokemonWithTitle()
+            pokemonWithTitle.setData(name: specy.name,
+                                     imageURL: StringUtilities.getBigPokemonImageFromSpecyUrl(urlStr: specy.url.absoluteString))
+            containerStackView.addArrangedSubview(pokemonWithTitle)
             
             if specy.name != data.evolutionChain.last?.name{
                 // This check prevents adding arrow to last image.
-                
                 containerStackView.addArrangedSubview(
                     generateArrow(color: UIColor.getMatchingColor(colorName: data.color))
                 )
@@ -99,7 +113,4 @@ class EvolutionChainComponent: UIView {
         }
         
     }
-    
-    
-    
 }

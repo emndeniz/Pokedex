@@ -9,6 +9,7 @@
 "pokedexNo" = "No: %@";
 "habitatOfThePokemon" = "Habitatı: %@";
 "evolutionChain" = "Evrim Döngüsü";
+"type" = "Tipi: %@";
 
 // Error messages
 "errorOoops" = "Hata";

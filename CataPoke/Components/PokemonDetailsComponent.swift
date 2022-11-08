@@ -23,9 +23,18 @@ class PokemonDetailsComponent: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 36, weight: .heavy)
         label.textColor = .primaryTextColor
+        label.textAlignment = .center
         label.numberOfLines = 0
         return label
     }()
+    
+
+    private lazy var typeComponent: TypeComponent = {
+       let typeComp = TypeComponent()
+        typeComp.translatesAutoresizingMaskIntoConstraints = false
+        return typeComp
+    }()
+    
 
     private lazy var pokedexId: UILabel = {
         let label = UILabel()
@@ -35,8 +44,19 @@ class PokemonDetailsComponent: UIView {
         label.numberOfLines = 0
         return label
     }()
+  
+
     
     private lazy var habitatLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 24, weight: .light)
+        label.textColor = .primaryTextColor
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    private lazy var abilitiesLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 24, weight: .light)
@@ -101,6 +121,7 @@ class PokemonDetailsComponent: UIView {
         
         self.addSubview(containerStackView)
         containerStackView.addArrangedSubview(nameLabel)
+        containerStackView.addArrangedSubview(typeComponent)
         containerStackView.addArrangedSubview(pokedexId)
         containerStackView.addArrangedSubview(habitatLabel)
         containerStackView.addArrangedSubview(imageContainer)
@@ -141,6 +162,7 @@ class PokemonDetailsComponent: UIView {
         
         containerStackView.addArrangedSubview(evolutionChainComponent)
         evolutionChainComponent.setData(data: data)
+        typeComponent.setData(data: data)
         
     }
 }

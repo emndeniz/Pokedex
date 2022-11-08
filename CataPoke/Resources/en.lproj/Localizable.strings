@@ -9,6 +9,7 @@
 "pokedexNo" = "No: %@";
 "habitatOfThePokemon" = "Habitat: %@";
 "evolutionChain" = "Evolution Chain";
+"type" = "Type: %@";
 
 // Error messages
 "errorOoops" = "Oops!";

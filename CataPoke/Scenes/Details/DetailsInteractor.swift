@@ -107,37 +107,7 @@ extension DetailsInteractor: DetailsInteractorInterface {
         var evolutionChain: [Species] = []
         
         self.flattenEvolutionChain(evolutionChain: &evolutionChain, chainLink: evolutionDetails.chain)
-    
-        // Flatten abilities to single String array
-        var abilities:[String] = []
-        if let abilitiesArr = pokemonDetails.abilities{
-            abilities = abilitiesArr.compactMap { element in
-                return element.ability?.name
-            }
-        }
-        // Flatten moves to single String array
-        var moves:[String] = []
-        if let movesArr = pokemonDetails.moves{
-            moves = movesArr.compactMap({ element in
-                return element.move?.name
-            })
-        }
-        // Flatten stats to single dictionary
-        var stats:Dictionary<String, Int> = [:]
-        if let statsArr = pokemonDetails.stats{
-            statsArr.forEach { element in
-                if let name = element.stat?.name, let value = element.baseStat{
-                    stats[name] = value
-                }
-            }
-        }
-        // Flatten types to single String array
-        var types:[String] = []
-        if let typesArr = pokemonDetails.types{
-            types = typesArr.compactMap({ element in
-                return element.type?.name
-            })
-        }
+       
         // Obtain imageURL
         var imageUrl: URL?
         if let imageUrlStr = pokemonDetails.sprites?.other?.home?.frontDefault {
@@ -148,12 +118,12 @@ extension DetailsInteractor: DetailsInteractorInterface {
                                                   id: specyDetails.id,
                                                   imageURL: imageUrl,
                                                   color: specyDetails.color.name,
-                                                  abilities: abilities,
+                                                  abilities: flattenAbilities(pokemonDetails: pokemonDetails),
                                                   height: pokemonDetails.height,
                                                   wight: pokemonDetails.weight,
-                                                  moves: moves,
-                                                  stats: stats,
-                                                  type: types,
+                                                  moves: flattenMoves(pokemonDetails: pokemonDetails),
+                                                  stats: flattenStats(pokemonDetails: pokemonDetails),
+                                                  type: flattenTypes(pokemonDetails: pokemonDetails),
                                                   habitat: specyDetails.habitat.name,
                                                   isMytical: specyDetails.isMytical,
                                                   isLegendary: specyDetails.isLegendary,
@@ -173,6 +143,97 @@ extension DetailsInteractor: DetailsInteractorInterface {
                                   chainLink: chainLink.evolvesTo[0])
         }
     }
+}
+
+//MARK: - Response Utility Functions -
+extension DetailsInteractor {
+    
+    
+    /// This function merge and flatten flavor texts and store them in dictionary which uses languges as keys.
+    /// - Parameter specyDetails: SpeciesDetails Reponse
+    /// - Returns: Dictionary that contains all flavor texts divided by languages
+    private func flattenFlavorTexts(specyDetails:SpeciesDetails) -> Dictionary<String,[String]> {
+        var flavorTexts:Dictionary<String,[String]> = [:]
+        if let flavorArr = specyDetails.flavorTextEntries{
+            
+            flavorArr.forEach { element in
+                
+                if let language = element.language?.name, let value = element.flavorText {
+                    
+                    if let arr = flavorTexts[language]{
+                        var newArr = arr
+                        newArr.append(value)
+                        flavorTexts[language] = newArr
+                    }else {
+                        flavorTexts[language] = [value]
+                    }
+                    
+                    
+                }
+            }
+        }
+        return flavorTexts
+    }
+    
+    /// This function combines all abilities in a single array.
+    /// - Parameter pokemonDetails: PokemonDetails response
+    /// - Returns: String array that contains abilitites
+    private func flattenAbilities(pokemonDetails:PokemonDetails) -> [String]{
+        // Flatten abilities to single String array
+        var abilities:[String] = []
+        if let abilitiesArr = pokemonDetails.abilities{
+            abilities = abilitiesArr.compactMap { element in
+                return element.ability?.name
+            }
+        }
+        return abilities
+    }
+    
+    /// This function combines all moves in a single array.
+    /// - Parameter pokemonDetails: PokemonDetails response
+    /// - Returns: String array that contains moves
+    private func flattenMoves(pokemonDetails:PokemonDetails) -> [String]{
+        // Flatten moves to single String array
+        var moves:[String] = []
+        if let movesArr = pokemonDetails.moves{
+            moves = movesArr.compactMap({ element in
+                return element.move?.name
+            })
+        }
+        return moves
+    }
+    
+    /// This function combines all types in a single array.
+    /// - Parameter pokemonDetails: PokemonDetails response
+    /// - Returns: String array that contains moves
+    private func flattenTypes(pokemonDetails:PokemonDetails) -> [String]{
+        // Flatten types to single String array
+        var types:[String] = []
+        if let typesArr = pokemonDetails.types{
+            types = typesArr.compactMap({ element in
+                return element.type?.name
+            })
+        }
+        return types
+    }
+    
+    /// This function combines all stats in a single dictionary.
+    /// - Parameter pokemonDetails: PokemonDetails response
+    /// - Returns: Dictionary that contains stats
+    private func flattenStats(pokemonDetails:PokemonDetails) -> Dictionary<String, Int>{
+        // Flatten stats to single dictionary
+        var stats:Dictionary<String, Int> = [:]
+        if let statsArr = pokemonDetails.stats{
+            statsArr.forEach { element in
+                if let name = element.stat?.name, let value = element.baseStat{
+                    stats[name] = value
+                }
+            }
+        }
+        return stats
+    }
+    
+    
 }
 
 
