@@ -120,10 +120,10 @@ extension DetailsInteractor: DetailsInteractorInterface {
                                                   color: specyDetails.color.name,
                                                   abilities: flattenAbilities(pokemonDetails: pokemonDetails),
                                                   height: pokemonDetails.height,
-                                                  wight: pokemonDetails.weight,
+                                                  weight: pokemonDetails.weight,
                                                   moves: flattenMoves(pokemonDetails: pokemonDetails),
                                                   stats: flattenStats(pokemonDetails: pokemonDetails),
-                                                  type: flattenTypes(pokemonDetails: pokemonDetails),
+                                                  types: flattenTypes(pokemonDetails: pokemonDetails),
                                                   habitat: specyDetails.habitat.name,
                                                   isMytical: specyDetails.isMytical,
                                                   isLegendary: specyDetails.isLegendary,
@@ -244,10 +244,10 @@ struct CompleteDetailResponse {
     let color: String
     let abilities:[String]
     let height:Int?
-    let wight:Int?
+    let weight:Int?
     let moves: [String]
     let stats: Dictionary<String, Int>
-    let type: [String]
+    let types: [String]
     let habitat: String
     let isMytical: Bool
     let isLegendary : Bool

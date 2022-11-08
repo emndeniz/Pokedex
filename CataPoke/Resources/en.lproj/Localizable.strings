@@ -9,7 +9,13 @@
 "pokedexNo" = "No: %@";
 "habitatOfThePokemon" = "Habitat: %@";
 "evolutionChain" = "Evolution Chain";
-"type" = "Type: %@";
+"information" = "Information";
+"abilities" = "Abilities";
+"moves" = "Moves";
+"height" = "Height: %@ meters";
+"weight" = "Weight: %@ kilogram";
+"type" = "Type";
+"notAvailable" = "Not availabe";
 
 // Error messages
 "errorOoops" = "Oops!";

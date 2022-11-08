@@ -9,7 +9,13 @@
 "pokedexNo" = "No: %@";
 "habitatOfThePokemon" = "Habitatı: %@";
 "evolutionChain" = "Evrim Döngüsü";
-"type" = "Tipi: %@";
+"abilities" = "Yetenekleri";
+"moves" = "Hareketler";
+"information" = "Bilgiler";
+"height" = "Boyu: %@ metre";
+"weight" = "Kilosu: %@ kilogram";
+"notAvailable" = "Mevcut değil";
+"type" = "Tip";
 
 // Error messages
 "errorOoops" = "Hata";
