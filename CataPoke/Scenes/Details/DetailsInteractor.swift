@@ -47,20 +47,52 @@ extension DetailsInteractor: DetailsInteractorInterface {
     ///   - url: url to fetch evolution
     ///   - specyDetail: specy detail response model
     ///   - completion: completion
-    private func fetchEvolutionDetails(url:URL,specyDetail: SpeciesDetails,completion: @escaping DetailsInteractorCompletion ){
+    private func fetchEvolutionDetails(url:URL,
+                                       specyDetail: SpeciesDetails,
+                                       completion: @escaping DetailsInteractorCompletion ){
         requestHandler.request(route: .getEvolutionChain(url)) { [weak self] (result:Result<EvolutionChainDetails, APIError>) in
             guard let self = self else {return}
             switch result {
                 
             case .success(let evlotutionResponse):
              
+                self.fetchPokemonDetails(pokemonId: specyDetail.id,
+                                    specyDetail: specyDetail,
+                                    evolutionDetails: evlotutionResponse) { result in
+                    completion(result)
+                }
                 
-                let mergedResponse = self.mergeResponses(specyDetails: specyDetail, evolutionDetails: evlotutionResponse)
-                completion(.success(mergedResponse))
             case .failure(let err):
                 completion(.failure(err))
             }
         }
+    }
+    
+    private func fetchPokemonDetails(pokemonId:Int,
+                                     specyDetail: SpeciesDetails,
+                                     evolutionDetails:EvolutionChainDetails,
+                                     completion: @escaping DetailsInteractorCompletion){
+        
+        
+        requestHandler.request(route: .getPokemonDetails(id: pokemonId)) { [weak self] (result:Result<PokemonDetails, APIError>) in
+            guard let self = self else {return}
+            switch result {
+                
+            case .success(let detailsResponse):
+                
+                
+                let mergedResponse = self.mergeResponses(specyDetails: specyDetail,
+                                                         evolutionDetails: evolutionDetails,
+                                                         pokemonDetails: detailsResponse)
+                completion(.success(mergedResponse))
+                
+                
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+        
+        
     }
     
     /// Merges given two responses and create simple response model for presenter
@@ -68,20 +100,66 @@ extension DetailsInteractor: DetailsInteractorInterface {
     ///   - specyDetails: specy details response model
     ///   - evolutionDetails: evolution details response model
     /// - Returns: CompleteDetailResponse that contains merged response
-    private func mergeResponses(specyDetails: SpeciesDetails, evolutionDetails: EvolutionChainDetails) -> CompleteDetailResponse{
+    private func mergeResponses(specyDetails: SpeciesDetails,
+                                evolutionDetails: EvolutionChainDetails,
+                                pokemonDetails:PokemonDetails) -> CompleteDetailResponse{
         
         var evolutionChain: [Species] = []
         
         self.flattenEvolutionChain(evolutionChain: &evolutionChain, chainLink: evolutionDetails.chain)
+    
+        // Flatten abilities to single String array
+        var abilities:[String] = []
+        if let abilitiesArr = pokemonDetails.abilities{
+            abilities = abilitiesArr.compactMap { element in
+                return element.ability?.name
+            }
+        }
+        // Flatten moves to single String array
+        var moves:[String] = []
+        if let movesArr = pokemonDetails.moves{
+            moves = movesArr.compactMap({ element in
+                return element.move?.name
+            })
+        }
+        // Flatten stats to single dictionary
+        var stats:Dictionary<String, Int> = [:]
+        if let statsArr = pokemonDetails.stats{
+            statsArr.forEach { element in
+                if let name = element.stat?.name, let value = element.baseStat{
+                    stats[name] = value
+                }
+            }
+        }
+        // Flatten types to single String array
+        var types:[String] = []
+        if let typesArr = pokemonDetails.types{
+            types = typesArr.compactMap({ element in
+                return element.type?.name
+            })
+        }
+        // Obtain imageURL
+        var imageUrl: URL?
+        if let imageUrlStr = pokemonDetails.sprites?.other?.home?.frontDefault {
+            imageUrl = URL(string: imageUrlStr)
+        }
         
         return CompleteDetailResponse(name: specyDetails.name,
-                                      id: specyDetails.id,
-                                      imageURL: StringUtilities.getBigPokemonImageFromId(id: specyDetails.id),
-                                      color: specyDetails.color.name,
-                                      habitat: specyDetails.habitat.name,
-                                      isMytical: specyDetails.isMytical,
-                                      isLegendary: specyDetails.isLegendary,
-                                      evolutionChain: evolutionChain)
+                                                  id: specyDetails.id,
+                                                  imageURL: imageUrl,
+                                                  color: specyDetails.color.name,
+                                                  abilities: abilities,
+                                                  height: pokemonDetails.height,
+                                                  wight: pokemonDetails.weight,
+                                                  moves: moves,
+                                                  stats: stats,
+                                                  type: types,
+                                                  habitat: specyDetails.habitat.name,
+                                                  isMytical: specyDetails.isMytical,
+                                                  isLegendary: specyDetails.isLegendary,
+                                                  evolutionChain: evolutionChain)
+
+        
     }
     
     /// Flattens given chain link
@@ -103,6 +181,12 @@ struct CompleteDetailResponse {
     let id : Int
     let imageURL: URL?
     let color: String
+    let abilities:[String]
+    let height:Int?
+    let wight:Int?
+    let moves: [String]
+    let stats: Dictionary<String, Int>
+    let type: [String]
     let habitat: String
     let isMytical: Bool
     let isLegendary : Bool

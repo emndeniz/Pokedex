@@ -8,6 +8,7 @@ enum APIRoute {
     case getSpeciesList(limit: Int, offset: Int)
     case getSpecies(URL)
     case getEvolutionChain(URL)
+    case getPokemonDetails(id:Int)
 
     private var baseURLString: String { "https://pokeapi.co/api/v2/" }
 
@@ -18,6 +19,8 @@ enum APIRoute {
             return url
         case .getSpeciesList:
             return URL(string: baseURLString + "pokemon-species")
+        case .getPokemonDetails(id: let id):
+            return URL(string: baseURLString + "pokemon/\(id)")
         }
     }
 
