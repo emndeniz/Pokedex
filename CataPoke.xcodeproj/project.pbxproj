@@ -46,6 +46,15 @@
 		01A31E17291AD0BE00907581 /* PokemonWithTitleComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A31E16291AD0BE00907581 /* PokemonWithTitleComponent.swift */; };
 		01A31E19291AD48700907581 /* PropertyListComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A31E18291AD48700907581 /* PropertyListComponent.swift */; };
 		01A31E1B291AD8E000907581 /* PokemonInfoComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A31E1A291AD8E000907581 /* PokemonInfoComponent.swift */; };
+		01A31E23291AEABC00907581 /* CataPokeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A31E22291AEABC00907581 /* CataPokeTests.swift */; };
+		01A31E2D291AEB6800907581 /* JSONTestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A31E2C291AEB6800907581 /* JSONTestHelper.swift */; };
+		01A31E2F291AEB7900907581 /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A31E2E291AEB7900907581 /* MockURLProtocol.swift */; };
+		01A31E33291AEBC400907581 /* PokeList.json in Resources */ = {isa = PBXBuildFile; fileRef = 01A31E32291AEBC400907581 /* PokeList.json */; };
+		01A31E35291AEBFE00907581 /* ListServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A31E34291AEBFE00907581 /* ListServiceTests.swift */; };
+		01A31E3D291AEFE700907581 /* SpecyDetailsResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 01A31E3C291AEFE700907581 /* SpecyDetailsResponse.json */; };
+		01A31E43291AF08300907581 /* PokemonDetailsResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 01A31E42291AF08300907581 /* PokemonDetailsResponse.json */; };
+		01B6A8C8291AF0CA00066E41 /* EvolutionChainResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 01B6A8C7291AF0CA00066E41 /* EvolutionChainResponse.json */; };
+		01B6A8CA291AF0E400066E41 /* SpeciesDeteailsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B6A8C9291AF0E400066E41 /* SpeciesDeteailsTest.swift */; };
 		CE4C9CAB2820167200FEA589 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4C9CAA2820167200FEA589 /* AppDelegate.swift */; };
 		CE4C9CAD2820167200FEA589 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4C9CAC2820167200FEA589 /* SceneDelegate.swift */; };
 		CE4C9CB42820167300FEA589 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE4C9CB32820167300FEA589 /* Assets.xcassets */; };
@@ -57,6 +66,16 @@
 		CE9303D128227CDE0057188E /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9303D028227CDE0057188E /* ListCell.swift */; };
 		CE9303D92822D1D30057188E /* SpeciesDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9303D82822D1D30057188E /* SpeciesDetails.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		01A31E24291AEABC00907581 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CE4C9C9F2820167200FEA589 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CE4C9CA62820167200FEA589;
+			remoteInfo = CataPoke;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0122FA682914328500118577 /* RequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
@@ -96,6 +115,16 @@
 		01A31E16291AD0BE00907581 /* PokemonWithTitleComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonWithTitleComponent.swift; sourceTree = "<group>"; };
 		01A31E18291AD48700907581 /* PropertyListComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyListComponent.swift; sourceTree = "<group>"; };
 		01A31E1A291AD8E000907581 /* PokemonInfoComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonInfoComponent.swift; sourceTree = "<group>"; };
+		01A31E20291AEABC00907581 /* CataPokeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CataPokeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		01A31E22291AEABC00907581 /* CataPokeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CataPokeTests.swift; sourceTree = "<group>"; };
+		01A31E2C291AEB6800907581 /* JSONTestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONTestHelper.swift; sourceTree = "<group>"; };
+		01A31E2E291AEB7900907581 /* MockURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
+		01A31E32291AEBC400907581 /* PokeList.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PokeList.json; sourceTree = "<group>"; };
+		01A31E34291AEBFE00907581 /* ListServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListServiceTests.swift; sourceTree = "<group>"; };
+		01A31E3C291AEFE700907581 /* SpecyDetailsResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SpecyDetailsResponse.json; sourceTree = "<group>"; };
+		01A31E42291AF08300907581 /* PokemonDetailsResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PokemonDetailsResponse.json; sourceTree = "<group>"; };
+		01B6A8C7291AF0CA00066E41 /* EvolutionChainResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = EvolutionChainResponse.json; sourceTree = "<group>"; };
+		01B6A8C9291AF0E400066E41 /* SpeciesDeteailsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeciesDeteailsTest.swift; sourceTree = "<group>"; };
 		CE4C9CA72820167200FEA589 /* CataPoke.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CataPoke.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE4C9CAA2820167200FEA589 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE4C9CAC2820167200FEA589 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -112,6 +141,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		01A31E1D291AEABC00907581 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CE4C9CA42820167200FEA589 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -218,11 +254,116 @@
 			path = PokeAlertView;
 			sourceTree = "<group>";
 		};
+		01A31E21291AEABC00907581 /* CataPokeTests */ = {
+			isa = PBXGroup;
+			children = (
+				01A31E2B291AEB5800907581 /* TestUtilities */,
+				01A31E2A291AEB3100907581 /* ServiceTests */,
+				01A31E29291AEB2600907581 /* SceneTests */,
+			);
+			path = CataPokeTests;
+			sourceTree = "<group>";
+		};
+		01A31E29291AEB2600907581 /* SceneTests */ = {
+			isa = PBXGroup;
+			children = (
+				01A31E22291AEABC00907581 /* CataPokeTests.swift */,
+			);
+			path = SceneTests;
+			sourceTree = "<group>";
+		};
+		01A31E2A291AEB3100907581 /* ServiceTests */ = {
+			isa = PBXGroup;
+			children = (
+				01A31E38291AEFC100907581 /* EvolutionChain */,
+				01A31E37291AEFBB00907581 /* PokemonDetails */,
+				01A31E36291AEFA800907581 /* SpecyDetails */,
+				01A31E30291AEB9100907581 /* ListTests */,
+			);
+			path = ServiceTests;
+			sourceTree = "<group>";
+		};
+		01A31E2B291AEB5800907581 /* TestUtilities */ = {
+			isa = PBXGroup;
+			children = (
+				01A31E2C291AEB6800907581 /* JSONTestHelper.swift */,
+				01A31E2E291AEB7900907581 /* MockURLProtocol.swift */,
+			);
+			path = TestUtilities;
+			sourceTree = "<group>";
+		};
+		01A31E30291AEB9100907581 /* ListTests */ = {
+			isa = PBXGroup;
+			children = (
+				01A31E31291AEBA500907581 /* Resources */,
+				01A31E34291AEBFE00907581 /* ListServiceTests.swift */,
+			);
+			path = ListTests;
+			sourceTree = "<group>";
+		};
+		01A31E31291AEBA500907581 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				01A31E32291AEBC400907581 /* PokeList.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		01A31E36291AEFA800907581 /* SpecyDetails */ = {
+			isa = PBXGroup;
+			children = (
+				01A31E39291AEFCD00907581 /* Resources */,
+				01B6A8C9291AF0E400066E41 /* SpeciesDeteailsTest.swift */,
+			);
+			path = SpecyDetails;
+			sourceTree = "<group>";
+		};
+		01A31E37291AEFBB00907581 /* PokemonDetails */ = {
+			isa = PBXGroup;
+			children = (
+				01A31E3A291AEFD100907581 /* Resources */,
+			);
+			path = PokemonDetails;
+			sourceTree = "<group>";
+		};
+		01A31E38291AEFC100907581 /* EvolutionChain */ = {
+			isa = PBXGroup;
+			children = (
+				01A31E3B291AEFD400907581 /* Resources */,
+			);
+			path = EvolutionChain;
+			sourceTree = "<group>";
+		};
+		01A31E39291AEFCD00907581 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				01A31E3C291AEFE700907581 /* SpecyDetailsResponse.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		01A31E3A291AEFD100907581 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				01A31E42291AF08300907581 /* PokemonDetailsResponse.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		01A31E3B291AEFD400907581 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				01B6A8C7291AF0CA00066E41 /* EvolutionChainResponse.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		CE4C9C9E2820167200FEA589 = {
 			isa = PBXGroup;
 			children = (
 				CE9303D52822D0200057188E /* README.md */,
 				CE4C9CA92820167200FEA589 /* CataPoke */,
+				01A31E21291AEABC00907581 /* CataPokeTests */,
 				CE4C9CA82820167200FEA589 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -231,6 +372,7 @@
 			isa = PBXGroup;
 			children = (
 				CE4C9CA72820167200FEA589 /* CataPoke.app */,
+				01A31E20291AEABC00907581 /* CataPokeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -303,6 +445,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		01A31E1F291AEABC00907581 /* CataPokeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 01A31E26291AEABC00907581 /* Build configuration list for PBXNativeTarget "CataPokeTests" */;
+			buildPhases = (
+				01A31E1C291AEABC00907581 /* Sources */,
+				01A31E1D291AEABC00907581 /* Frameworks */,
+				01A31E1E291AEABC00907581 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				01A31E25291AEABC00907581 /* PBXTargetDependency */,
+			);
+			name = CataPokeTests;
+			productName = CataPokeTests;
+			productReference = 01A31E20291AEABC00907581 /* CataPokeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		CE4C9CA62820167200FEA589 /* CataPoke */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CE4C9CD12820167300FEA589 /* Build configuration list for PBXNativeTarget "CataPoke" */;
@@ -332,9 +492,13 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1330;
+				LastSwiftUpdateCheck = 1400;
 				LastUpgradeCheck = 1330;
 				TargetAttributes = {
+					01A31E1F291AEABC00907581 = {
+						CreatedOnToolsVersion = 14.0;
+						TestTargetID = CE4C9CA62820167200FEA589;
+					};
 					CE4C9CA62820167200FEA589 = {
 						CreatedOnToolsVersion = 13.3.1;
 					};
@@ -360,11 +524,23 @@
 			projectRoot = "";
 			targets = (
 				CE4C9CA62820167200FEA589 /* CataPoke */,
+				01A31E1F291AEABC00907581 /* CataPokeTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		01A31E1E291AEABC00907581 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				01A31E3D291AEFE700907581 /* SpecyDetailsResponse.json in Resources */,
+				01A31E43291AF08300907581 /* PokemonDetailsResponse.json in Resources */,
+				01B6A8C8291AF0CA00066E41 /* EvolutionChainResponse.json in Resources */,
+				01A31E33291AEBC400907581 /* PokeList.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CE4C9CA52820167200FEA589 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -380,6 +556,18 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		01A31E1C291AEABC00907581 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				01B6A8CA291AF0E400066E41 /* SpeciesDeteailsTest.swift in Sources */,
+				01A31E2F291AEB7900907581 /* MockURLProtocol.swift in Sources */,
+				01A31E35291AEBFE00907581 /* ListServiceTests.swift in Sources */,
+				01A31E23291AEABC00907581 /* CataPokeTests.swift in Sources */,
+				01A31E2D291AEB6800907581 /* JSONTestHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CE4C9CA32820167200FEA589 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -430,6 +618,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		01A31E25291AEABC00907581 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CE4C9CA62820167200FEA589 /* CataPoke */;
+			targetProxy = 01A31E24291AEABC00907581 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		0161A11529158BFF0019F3BC /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
@@ -451,6 +647,46 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		01A31E27291AEABC00907581 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6LQ7CG225G;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.emndeniz.CataPokeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CataPoke.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CataPoke";
+			};
+			name = Debug;
+		};
+		01A31E28291AEABC00907581 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6LQ7CG225G;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.emndeniz.CataPokeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CataPoke.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CataPoke";
+			};
+			name = Release;
+		};
 		CE4C9CCF2820167300FEA589 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -624,6 +860,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		01A31E26291AEABC00907581 /* Build configuration list for PBXNativeTarget "CataPokeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				01A31E27291AEABC00907581 /* Debug */,
+				01A31E28291AEABC00907581 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		CE4C9CA22820167200FEA589 /* Build configuration list for PBXProject "CataPoke" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
