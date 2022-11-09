@@ -64,6 +64,7 @@
 		01B6A8DE291BF75700066E41 /* CharizardPokemonDetails.json in Resources */ = {isa = PBXBuildFile; fileRef = 01B6A8DD291BF75700066E41 /* CharizardPokemonDetails.json */; };
 		01B6A8E0291BF77200066E41 /* CharizardEvolutionChain.json in Resources */ = {isa = PBXBuildFile; fileRef = 01B6A8DF291BF77200066E41 /* CharizardEvolutionChain.json */; };
 		01B6A8E3291BFBC400066E41 /* DetailsScenePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B6A8E2291BFBC400066E41 /* DetailsScenePresenterTests.swift */; };
+		01B6A8E6291C02E900066E41 /* ColorExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B6A8E5291C02E900066E41 /* ColorExtensionTests.swift */; };
 		CE4C9CAB2820167200FEA589 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4C9CAA2820167200FEA589 /* AppDelegate.swift */; };
 		CE4C9CAD2820167200FEA589 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4C9CAC2820167200FEA589 /* SceneDelegate.swift */; };
 		CE4C9CB42820167300FEA589 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE4C9CB32820167300FEA589 /* Assets.xcassets */; };
@@ -143,6 +144,7 @@
 		01B6A8DD291BF75700066E41 /* CharizardPokemonDetails.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CharizardPokemonDetails.json; sourceTree = "<group>"; };
 		01B6A8DF291BF77200066E41 /* CharizardEvolutionChain.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CharizardEvolutionChain.json; sourceTree = "<group>"; };
 		01B6A8E2291BFBC400066E41 /* DetailsScenePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsScenePresenterTests.swift; sourceTree = "<group>"; };
+		01B6A8E5291C02E900066E41 /* ColorExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensionTests.swift; sourceTree = "<group>"; };
 		CE4C9CA72820167200FEA589 /* CataPoke.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CataPoke.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE4C9CAA2820167200FEA589 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE4C9CAC2820167200FEA589 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 		01A31E21291AEABC00907581 /* CataPokeTests */ = {
 			isa = PBXGroup;
 			children = (
+				01B6A8E4291C028900066E41 /* UtililiesTests */,
 				01A31E2B291AEB5800907581 /* TestUtilities */,
 				01A31E2A291AEB3100907581 /* ServiceTests */,
 				01A31E29291AEB2600907581 /* SceneTests */,
@@ -407,6 +410,14 @@
 				01B6A8DF291BF77200066E41 /* CharizardEvolutionChain.json */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		01B6A8E4291C028900066E41 /* UtililiesTests */ = {
+			isa = PBXGroup;
+			children = (
+				01B6A8E5291C02E900066E41 /* ColorExtensionTests.swift */,
+			);
+			path = UtililiesTests;
 			sourceTree = "<group>";
 		};
 		CE4C9C9E2820167200FEA589 = {
@@ -617,6 +628,7 @@
 				01B6A8CA291AF0E400066E41 /* SpeciesDeteailsServiceTest.swift in Sources */,
 				01A31E2F291AEB7900907581 /* MockURLProtocol.swift in Sources */,
 				01B6A8D7291BCC0200066E41 /* ListPresenterTests.swift in Sources */,
+				01B6A8E6291C02E900066E41 /* ColorExtensionTests.swift in Sources */,
 				01B6A8CC291B990000066E41 /* PokemonDeteailsServiceTest.swift in Sources */,
 				01B6A8E3291BFBC400066E41 /* DetailsScenePresenterTests.swift in Sources */,
 				01A31E35291AEBFE00907581 /* ListServiceTests.swift in Sources */,

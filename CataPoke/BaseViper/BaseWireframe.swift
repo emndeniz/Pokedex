@@ -57,7 +57,9 @@ extension BaseWireframe {
     }
     
     func showAlert(with title: String?, message: String?, actions:  [Action]) {
-        let alertVC = PokeAlertView(withTitle: title, message: message, actions: actions)
+        let alertVC = PokeAlertView(withTitle: title ?? "",
+                                    message: message ?? "",
+                                    actions: actions)
         alertVC.modalPresentationStyle = .overCurrentContext
         alertVC.modalTransitionStyle = .crossDissolve
         navigationController?.present(alertVC, animated: true, completion: nil)

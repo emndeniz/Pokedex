@@ -82,8 +82,8 @@ class PokeAlertView: UIViewController {
     ///   - actions: Actions to be done
     ///   - axis: Orientation of buttons, whether to be arranged vertically or horizontally
     ///   - style: alertStyle default is normal
-    init(withTitle title: String?,
-         message: String?,
+    init(withTitle title: String,
+         message: String,
          actions: [Action],
          axis: NSLayoutConstraint.Axis = .horizontal) {
         super.init(nibName: nil, bundle: nil)
