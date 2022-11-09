@@ -36,7 +36,6 @@ extension DetailsInteractor: DetailsInteractorInterface {
                 self.fetchEvolutionDetails(url: response.evolutionChain.url, specyDetail: response, completion: completion)
                 
             case .failure(let err):
-                //TODO: add error popups
                 completion(.failure(err))
             }
         }

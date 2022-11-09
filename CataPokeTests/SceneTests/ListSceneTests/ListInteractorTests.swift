@@ -10,8 +10,8 @@ import XCTest
 
 final class ListInteractorTests: XCTestCase {
 
-    var mockRequestHandler: MockRequestHandler!
-    var expectation: XCTestExpectation!
+    private var mockRequestHandler: MockRequestHandler!
+    private var expectation: XCTestExpectation!
     
     private var sut: ListInteractor!
     
@@ -78,7 +78,7 @@ final class ListInteractorTests: XCTestCase {
     
 }
 
-class MockRequestHandler : RequestHandling{
+private class MockRequestHandler : RequestHandling{
     
     var speciesResponse : SpeciesResponse?
     var isReturnFailure: Bool
