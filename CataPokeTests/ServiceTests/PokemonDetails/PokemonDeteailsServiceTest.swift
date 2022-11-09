@@ -1,20 +1,21 @@
 //
-//  SpeciesDeteailsTest.swift
+//  PokemonDeteailsServiceTest.swift
 //  CataPokeTests
 //
-//  Created by Emin on 8.11.2022.
+//  Created by Emin on 9.11.2022.
 //
 
 import XCTest
 @testable import CataPoke
 
-final class SpeciesDeteailsTest: XCTestCase {
-    
-    
+
+final class PokemonDeteailsServiceTest: XCTestCase {
+
+
     var requestHandler: RequestHandling!
     var expectation: XCTestExpectation!
     
-    let apiURL = URL(string: "https://pokeapi.co/api/v2/pokemon-species/4/?")!
+    let apiURL = URL(string: "https://pokeapi.co/api/v2/pokemon/7?")!
     
     
     override func setUpWithError() throws {
@@ -32,7 +33,7 @@ final class SpeciesDeteailsTest: XCTestCase {
     
     func test_givenSpeciesListRequest_whenResponseSuccessFull_thenShouldContainRquiredData() throws {
         
-        let data = JSONTestHelper().readLocalFile(name: "SpecyDetailsResponse")
+        let data = JSONTestHelper().readLocalFile(name: "PokemonDetailsResponse")
         
         MockURLProtocol.requestHandler = { request in
             guard let url = request.url, url == self.apiURL else {
@@ -43,16 +44,21 @@ final class SpeciesDeteailsTest: XCTestCase {
             return (response, data)
         }
         
-        let URL = URL(string: "https://pokeapi.co/api/v2/pokemon-species/4/")!
-        requestHandler.request(route: .getSpecies(URL)) {(result: Result<SpeciesDetails, APIError>) in
+        
+        requestHandler.request(route: .getPokemonDetails(id: 7)) { (result: Result<PokemonDetails, APIError>) in
             switch result {
                 
             case .success(let response):
-                print(response)
-                XCTAssertEqual(response.name, "charmander", "Pokemon name not matching")
-                XCTAssertEqual(response.color.name, "red", "Color name not matching")
-                XCTAssertEqual(response.habitat.name, "mountain", "Habitat name is not matching")
-                XCTAssertEqual(response.evolutionChain.url.absoluteString, "https://pokeapi.co/api/v2/evolution-chain/2/", "Evolution chain url is not matching")
+                XCTAssertEqual(response.name, "squirtle", "Pokemon name not matching")
+                XCTAssertEqual(response.abilities?.count, 2, "Ability count not matching")
+                XCTAssertEqual(response.abilities?[0].ability?.name, "torrent", "Ability name is not matching")
+                XCTAssertEqual(response.moves?.count, 99, "Moves count is not matching")
+                XCTAssertEqual(response.moves?[0].move?.name, "mega-punch", "Move name is not matching")
+                XCTAssertEqual(response.baseExperience, 63, "Move name is not matching")
+                XCTAssertEqual(response.height, 5, "Height is not matching")
+                XCTAssertEqual(response.weight, 90, "Weight is not matching")
+                XCTAssertEqual(response.types?.count, 1, "Type count is not matching")
+                XCTAssertEqual(response.types?[0].type?.name, "water", "Type name is not matching")
             case .failure(let error):
                 XCTFail("Error was not expected: \(error.localizedDescription)")
             }
@@ -73,25 +79,17 @@ final class SpeciesDeteailsTest: XCTestCase {
             return (response, data)
         }
         
-        let URL = URL(string: "https://pokeapi.co/api/v2/pokemon-species/4/")!
-        requestHandler.request(route: .getSpecies(URL)) {(result: Result<SpeciesDetails, APIError>) in
-            
+        requestHandler.request(route: .getPokemonDetails(id: 7)) { (result: Result<PokemonDetails, APIError>) in
             switch result {
+                
             case .success(_):
                 XCTFail("Success was not expected")
             case .failure(let error):
                 XCTAssertEqual(error.localizedDescription, APIError.jsonConversionFailure.localizedDescription)
             }
-            
             self.expectation.fulfill()
         }
         
-        
-        
         wait(for: [expectation], timeout: 1.0)
     }
-    
-    
-    
-    
 }

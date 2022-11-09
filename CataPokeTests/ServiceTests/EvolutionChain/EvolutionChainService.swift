@@ -1,19 +1,20 @@
 //
-//  ListServiceTests.swift
+//  EvolutionChainService.swift
 //  CataPokeTests
 //
-//  Created by Emin on 8.11.2022.
+//  Created by Emin on 9.11.2022.
 //
 
 import XCTest
 @testable import CataPoke
 
-final class ListServiceTests: XCTestCase {
+final class EvolutionChainService: XCTestCase {
+
 
     var requestHandler: RequestHandling!
     var expectation: XCTestExpectation!
     
-    let apiURL = URL(string: "https://pokeapi.co/api/v2/pokemon-species?limit=50&offset=0")!
+    let apiURL = URL(string: "https://pokeapi.co/api/v2/evolution-chain/1?")!
     
     
     override func setUpWithError() throws {
@@ -24,33 +25,32 @@ final class ListServiceTests: XCTestCase {
         requestHandler = RequestHandler(urlSession: urlSession)
         expectation = expectation(description: "Expectation")
     }
-
+    
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-
-    func test_givenSpeciesListRequest_whenResponseSuccessFull_thenShouldContainRquiredData() throws {
+    
+    func test_givenEvoloutionRequest_whenResponseSuccessFull_thenShouldContainRquiredData() throws {
         
-        let data = JSONTestHelper().readLocalFile(name: "PokeList")
+        let data = JSONTestHelper().readLocalFile(name: "EvolutionChainResponse")
         
         MockURLProtocol.requestHandler = { request in
             guard let url = request.url, url == self.apiURL else {
-            throw fatalError("URLS are not matching")
-          }
-          
-          let response = HTTPURLResponse(url: self.apiURL, statusCode: 200, httpVersion: nil, headerFields: nil)!
-          return (response, data)
+                throw fatalError("URLS are not matching")
+            }
+            
+            let response = HTTPURLResponse(url: self.apiURL, statusCode: 200, httpVersion: nil, headerFields: nil)!
+            return (response, data)
         }
         
-        
-        requestHandler.request(route: .getSpeciesList(limit: 50, offset: 0)) { (result: Result<SpeciesResponse, APIError>) in
+        let URL = URL(string: "https://pokeapi.co/api/v2/evolution-chain/1")!
+        requestHandler.request(route: .getEvolutionChain(URL)) { (result: Result<EvolutionChainDetails, APIError>) in
             switch result {
                 
             case .success(let response):
-                XCTAssertEqual(response.count, 905, "Total number of specises should be 905")
-                XCTAssertEqual(response.results.count, 50, "There should be 50 element in response")
-                XCTAssertEqual(response.results[0].name, "bulbasaur", "Pokemon name is not matching")
-                XCTAssertEqual(response.results[0].url.absoluteString, "https://pokeapi.co/api/v2/pokemon-species/1/", "Species url is not matching")
+                XCTAssertEqual(response.chain.species.name, "bulbasaur", "First evolution name not matching")
+                XCTAssertEqual(response.chain.evolvesTo[0].species.name, "ivysaur", "Second evolution name not matching")
+                XCTAssertEqual(response.chain.evolvesTo[0].evolvesTo[0].species.name, "venusaur", "Third evolution name not matching")
             case .failure(let error):
                 XCTFail("Error was not expected: \(error.localizedDescription)")
             }
@@ -59,9 +59,9 @@ final class ListServiceTests: XCTestCase {
         
         wait(for: [expectation], timeout: 1.0)
     }
-
     
-    func test_givenSpeciesListRequest_whenResponseFails_thenShouldReturnFail() throws {
+    
+    func test_givenEvoloutionRequest_whenResponseFails_thenShouldReturnFail() throws {
         
         // For error case we can use empty data
         let data = Data()
@@ -72,22 +72,22 @@ final class ListServiceTests: XCTestCase {
         }
         
         
-        requestHandler.request(route: .getSpeciesList(limit: 50, offset: 0)) { (result: Result<SpeciesResponse, APIError>) in
-           
+        let URL = URL(string: "https://pokeapi.co/api/v2/evolution-chain/1")!
+        requestHandler.request(route: .getEvolutionChain(URL)) { (result: Result<EvolutionChainDetails, APIError>) in
             switch result {
+                
             case .success(_):
-                    XCTFail("Success was not expected")
+                XCTFail("Success was not expected")
             case .failure(let error):
                 XCTAssertEqual(error.localizedDescription, APIError.jsonConversionFailure.localizedDescription)
             }
-            
             self.expectation.fulfill()
         }
         
         wait(for: [expectation], timeout: 1.0)
     }
-
     
     
-
 }
+
+

@@ -8,11 +8,19 @@
 import UIKit
 import Network
 
+
+protocol ConnectionMangerProtocol {
+    func monitorNetworkConnection()
+    func isNetworkAccessible() -> Bool
+}
+
 /// This class monitors network and inform app about changes.
-class ConnectionManager{
+class ConnectionManager : ConnectionMangerProtocol{
     
     static let instance = ConnectionManager()
     private let monitor = NWPathMonitor()
+    // This variable prevent to show user redundant alert to shown
+    private var isErrorAlertShown = false
     
     
     private init() {}
@@ -20,14 +28,17 @@ class ConnectionManager{
     /// Starts monitring
     func monitorNetworkConnection(){
         monitor.pathUpdateHandler = { [weak self] path in
+            guard let self = self else {return}
             if  path.status == .satisfied {
                 Logger.log.debug("Device is connected to internet, isCelularConnection:", context: path.isExpensive)
-            } else if !path.availableInterfaces.isEmpty{
-                // In this case we shouldn't show any alert
-                Logger.log.debug("Device has available networks but none of them satisfied yet.")
+                self.isErrorAlertShown = false
             }else {
-                Logger.log.warning("Device is connected to the internet")
-                self?.showWarningToUser()
+                Logger.log.warning("Device is not connected to the internet")
+                if !self.isErrorAlertShown{
+                    self.showWarningToUser()
+                    self.isErrorAlertShown = true
+                }
+               
             }
         }
         

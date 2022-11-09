@@ -1,5 +1,5 @@
 //
-//  ListServiceTests.swift
+//  SpeciesDeteailsTest.swift
 //  CataPokeTests
 //
 //  Created by Emin on 8.11.2022.
@@ -8,12 +8,13 @@
 import XCTest
 @testable import CataPoke
 
-final class ListServiceTests: XCTestCase {
-
+final class SpeciesDeteailsServiceTest: XCTestCase {
+    
+    
     var requestHandler: RequestHandling!
     var expectation: XCTestExpectation!
     
-    let apiURL = URL(string: "https://pokeapi.co/api/v2/pokemon-species?limit=50&offset=0")!
+    let apiURL = URL(string: "https://pokeapi.co/api/v2/pokemon-species/4/?")!
     
     
     override func setUpWithError() throws {
@@ -24,33 +25,33 @@ final class ListServiceTests: XCTestCase {
         requestHandler = RequestHandler(urlSession: urlSession)
         expectation = expectation(description: "Expectation")
     }
-
+    
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-
+    
     func test_givenSpeciesListRequest_whenResponseSuccessFull_thenShouldContainRquiredData() throws {
         
-        let data = JSONTestHelper().readLocalFile(name: "PokeList")
+        let data = JSONTestHelper().readLocalFile(name: "SpecyDetailsResponse")
         
         MockURLProtocol.requestHandler = { request in
             guard let url = request.url, url == self.apiURL else {
-            throw fatalError("URLS are not matching")
-          }
-          
-          let response = HTTPURLResponse(url: self.apiURL, statusCode: 200, httpVersion: nil, headerFields: nil)!
-          return (response, data)
+                throw fatalError("URLS are not matching")
+            }
+            
+            let response = HTTPURLResponse(url: self.apiURL, statusCode: 200, httpVersion: nil, headerFields: nil)!
+            return (response, data)
         }
         
-        
-        requestHandler.request(route: .getSpeciesList(limit: 50, offset: 0)) { (result: Result<SpeciesResponse, APIError>) in
+        let URL = URL(string: "https://pokeapi.co/api/v2/pokemon-species/4/")!
+        requestHandler.request(route: .getSpecies(URL)) {(result: Result<SpeciesDetails, APIError>) in
             switch result {
                 
             case .success(let response):
-                XCTAssertEqual(response.count, 905, "Total number of specises should be 905")
-                XCTAssertEqual(response.results.count, 50, "There should be 50 element in response")
-                XCTAssertEqual(response.results[0].name, "bulbasaur", "Pokemon name is not matching")
-                XCTAssertEqual(response.results[0].url.absoluteString, "https://pokeapi.co/api/v2/pokemon-species/1/", "Species url is not matching")
+                XCTAssertEqual(response.name, "charmander", "Pokemon name not matching")
+                XCTAssertEqual(response.color.name, "red", "Color name not matching")
+                XCTAssertEqual(response.habitat.name, "mountain", "Habitat name is not matching")
+                XCTAssertEqual(response.evolutionChain.url.absoluteString, "https://pokeapi.co/api/v2/evolution-chain/2/", "Evolution chain url is not matching")
             case .failure(let error):
                 XCTFail("Error was not expected: \(error.localizedDescription)")
             }
@@ -59,7 +60,7 @@ final class ListServiceTests: XCTestCase {
         
         wait(for: [expectation], timeout: 1.0)
     }
-
+    
     
     func test_givenSpeciesListRequest_whenResponseFails_thenShouldReturnFail() throws {
         
@@ -71,12 +72,12 @@ final class ListServiceTests: XCTestCase {
             return (response, data)
         }
         
-        
-        requestHandler.request(route: .getSpeciesList(limit: 50, offset: 0)) { (result: Result<SpeciesResponse, APIError>) in
-           
+        let URL = URL(string: "https://pokeapi.co/api/v2/pokemon-species/4/")!
+        requestHandler.request(route: .getSpecies(URL)) {(result: Result<SpeciesDetails, APIError>) in
+            
             switch result {
             case .success(_):
-                    XCTFail("Success was not expected")
+                XCTFail("Success was not expected")
             case .failure(let error):
                 XCTAssertEqual(error.localizedDescription, APIError.jsonConversionFailure.localizedDescription)
             }
@@ -84,10 +85,12 @@ final class ListServiceTests: XCTestCase {
             self.expectation.fulfill()
         }
         
+        
+        
         wait(for: [expectation], timeout: 1.0)
     }
-
     
     
-
+    
+    
 }
