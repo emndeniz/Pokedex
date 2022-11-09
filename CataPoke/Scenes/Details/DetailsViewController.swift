@@ -72,7 +72,6 @@ final class DetailsViewController: UIViewController {
     }()
     
     
-    
     // MARK: - Lifecycle -
     
     override func viewDidLoad() {
@@ -124,26 +123,6 @@ final class DetailsViewController: UIViewController {
         ])
         
     }
-    
-    private func showCustomAlert(){
-        
-        let cancelAction = Action(with: "OK", style: .normal) {[weak self] in
-            print("Cancel pressed")
-            self?.dismiss(animated: true, completion: nil)
-        }
-        let deleteAction = Action(with: "Delete", style: .destructive) {[weak self] in
-            print("Delete pressed")
-            self?.dismiss(animated: true, completion: nil)
-        }
-        let alertVC = PokeAlertView(withTitle: "Do you wish to delete?", message: "This will delete every data you have.", actions: [cancelAction,deleteAction], axis: .horizontal)
-            
-        
-        alertVC.modalPresentationStyle = .overCurrentContext
-        alertVC.modalTransitionStyle = .crossDissolve
-        present(alertVC, animated: true, completion: nil)
-    }
-    
-    
 }
 
 

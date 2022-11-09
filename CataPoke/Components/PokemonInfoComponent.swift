@@ -136,7 +136,7 @@ class PokemonInfoComponent: UIView {
         // Height provided as decimeter, weight provided as hectogram from api
         // Dividing it to 10 gives us Meter and Kilogram values
         if let val = value {
-            return String(val / 10)
+            return String(Double(val) / 10.0)
         }else {
             return String("notAvailable")
         }
