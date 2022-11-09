@@ -28,5 +28,5 @@ protocol ListPresenterInterface: PresenterInterface {
 }
 
 protocol ListInteractorInterface: InteractorInterface {
-    func getPokemons(pageNum:Int, _ completion:@escaping ((Result<SpeciesResponse, APIError>) -> Void))
+    func getSpeciesList(pageNum:Int, _ completion:@escaping ((Result<SpeciesResponse, APIError>) -> Void))
 }

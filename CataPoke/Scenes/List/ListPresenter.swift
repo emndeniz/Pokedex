@@ -19,7 +19,7 @@ final class ListPresenter {
     private let wireframe: ListWireframeInterface
     
     // Pagination number
-    private var pageNum = 0
+    private (set) var pageNum = 0
     // Boolean that indicates is new page available or not.
     // In case next is nil we won't request new data.
     private var isNewPageExist = true
@@ -72,7 +72,7 @@ extension ListPresenter: ListPresenterInterface {
         }
         
         isFetchingnewData = true
-        interactor.getPokemons(pageNum: pageNum) { [weak self ] (result:Result<SpeciesResponse, APIError>)  in
+        interactor.getSpeciesList(pageNum: pageNum) { [weak self ] (result:Result<SpeciesResponse, APIError>)  in
             guard let self = self else { return }
             switch result {
                 
