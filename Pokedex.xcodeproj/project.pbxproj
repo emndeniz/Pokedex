@@ -41,6 +41,7 @@
 		017225122918F23A00198096 /* PokeAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017225112918F23A00198096 /* PokeAlertView.swift */; };
 		017225152918FD6000198096 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017225142918FD6000198096 /* Action.swift */; };
 		017225172918FD8400198096 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017225162918FD8400198096 /* ActionButton.swift */; };
+		018B6CC6293255CC004EE077 /* DetailsSceneInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B6A8D9291BEF9400066E41 /* DetailsSceneInteractorTests.swift */; };
 		01A31E13291AC7EE00907581 /* TypeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A31E12291AC7EE00907581 /* TypeComponent.swift */; };
 		01A31E15291AC9DC00907581 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A31E14291AC9DC00907581 /* UIImageExtension.swift */; };
 		01A31E17291AD0BE00907581 /* PokemonWithTitleComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A31E16291AD0BE00907581 /* PokemonWithTitleComponent.swift */; };
@@ -58,7 +59,6 @@
 		01B6A8D0291B9BD800066E41 /* EvolutionChainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B6A8CF291B9BD800066E41 /* EvolutionChainService.swift */; };
 		01B6A8D5291BC84200066E41 /* ListInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B6A8D4291BC84200066E41 /* ListInteractorTests.swift */; };
 		01B6A8D7291BCC0200066E41 /* ListPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B6A8D6291BCC0200066E41 /* ListPresenterTests.swift */; };
-		01B6A8DA291BEF9400066E41 /* DetailsSceneInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B6A8D9291BEF9400066E41 /* DetailsSceneInteractorTests.swift */; };
 		01B6A8DC291BF72F00066E41 /* CharizardSpecyDetails.json in Resources */ = {isa = PBXBuildFile; fileRef = 01B6A8DB291BF72F00066E41 /* CharizardSpecyDetails.json */; };
 		01B6A8DE291BF75700066E41 /* CharizardPokemonDetails.json in Resources */ = {isa = PBXBuildFile; fileRef = 01B6A8DD291BF75700066E41 /* CharizardPokemonDetails.json */; };
 		01B6A8E0291BF77200066E41 /* CharizardEvolutionChain.json in Resources */ = {isa = PBXBuildFile; fileRef = 01B6A8DF291BF77200066E41 /* CharizardEvolutionChain.json */; };
@@ -618,11 +618,11 @@
 				01A31E2F291AEB7900907581 /* MockURLProtocol.swift in Sources */,
 				01B6A8D7291BCC0200066E41 /* ListPresenterTests.swift in Sources */,
 				01B6A8E6291C02E900066E41 /* ColorExtensionTests.swift in Sources */,
+				018B6CC6293255CC004EE077 /* DetailsSceneInteractorTests.swift in Sources */,
 				01B6A8CC291B990000066E41 /* PokemonDeteailsServiceTest.swift in Sources */,
 				01B6A8E3291BFBC400066E41 /* DetailsScenePresenterTests.swift in Sources */,
 				01A31E35291AEBFE00907581 /* ListServiceTests.swift in Sources */,
 				01B6A8D0291B9BD800066E41 /* EvolutionChainService.swift in Sources */,
-				01B6A8DA291BEF9400066E41 /* DetailsSceneInteractorTests.swift in Sources */,
 				01B6A8D5291BC84200066E41 /* ListInteractorTests.swift in Sources */,
 				01A31E2D291AEB6800907581 /* JSONTestHelper.swift in Sources */,
 			);

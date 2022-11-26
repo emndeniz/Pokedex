@@ -26,7 +26,8 @@ final class ColorExtensionTests: XCTestCase {
             // This also ensures force casting not causing any crash
             let color = UIColor.getMatchingColor(colorName: element)
             
-            XCTAssertNotNil(color, "Color should not be nil")
+            XCTAssertNotEqual(color,UIColor.defaultBackgroundColor ,"Color should not be equal to default background color, \(element) is possibly missing ")
+            
         }
         
     }

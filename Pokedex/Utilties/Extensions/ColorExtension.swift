@@ -29,25 +29,25 @@ extension UIColor {
     static func getMatchingColor(colorName:String) -> UIColor {
         switch colorName {
         case "black" :
-            return UIColor(named: "PokemonBlack")!
+            return UIColor(named: "PokemonBlack") ?? .defaultBackgroundColor
         case "blue" :
-            return UIColor(named: "PokemonBlue")!
+            return UIColor(named: "PokemonBlue") ?? .defaultBackgroundColor
         case "brown":
-            return UIColor(named: "PokemonBrown")!
+            return UIColor(named: "PokemonBrown") ?? .defaultBackgroundColor
         case "gray":
-            return UIColor(named: "PokemonGray")!
+            return UIColor(named: "PokemonGray") ?? .defaultBackgroundColor
         case "green":
-            return UIColor(named: "PokemonGreen")!
+            return UIColor(named: "PokemonGreen") ?? .defaultBackgroundColor
         case "pink":
-            return UIColor(named: "PokemonPink")!
+            return UIColor(named: "PokemonPink") ?? .defaultBackgroundColor
         case "purple":
-            return UIColor(named: "PokemonPurple")!
+            return UIColor(named: "PokemonPurple") ?? .defaultBackgroundColor
         case "red":
-            return UIColor(named: "PokemonRed")!
+            return UIColor(named: "PokemonRed") ?? .defaultBackgroundColor
         case "white":
-            return UIColor(named: "PokemonWhite")!
+            return UIColor(named: "PokemonWhite") ?? .defaultBackgroundColor
         case "yellow":
-            return UIColor(named: "PokemonYellow")!
+            return UIColor(named: "PokemonYellow") ?? .defaultBackgroundColor
         default:
             return .defaultBackgroundColor
         }
