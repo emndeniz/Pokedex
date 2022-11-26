@@ -1,0 +1,25 @@
+/* 
+  Localizable.strings
+  Pokedex
+
+  Created by Emin on 4.11.2022.
+  
+*/
+
+"pokedexNo" = "No: %@";
+"habitatOfThePokemon" = "Habitat: %@";
+"evolutionChain" = "Evolution Chain";
+"information" = "Information";
+"abilities" = "Abilities";
+"moves" = "Moves";
+"height" = "Height: %@ meters";
+"weight" = "Weight: %@ kilogram";
+"type" = "Type";
+"notAvailable" = "Not availabe";
+
+// Error messages
+"errorOoops" = "Oops!";
+"okText" = "OK";
+"retryText" = "Retry";
+"failedToFetchDataMessage" = "Sorry we can't get what you want now, please try again later";
+"noInternetConnectionMessage" = "There is a problem with your internet connection!";
